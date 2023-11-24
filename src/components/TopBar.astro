@@ -1,0 +1,88 @@
+---
+const routes: {
+  [key: string]: string;
+} = {
+  Home: "/",
+  About: "/about",
+  Work: "/work",
+  Contact: "/contact",
+};
+
+const path = Astro.url.pathname;
+---
+
+<div class="topbar">
+  <div class="logo">
+    <img src="https://ui-avatars.com/api/?name=Sparsh+Kaushik" alt="Logo" />
+  </div>
+  <div class="menu">
+    {
+      Object.keys(routes).map((route) => (
+        <a
+          class={`link ${path === routes[route] ? "active" : ""}`}
+          href={routes[route]}
+        >
+          {route}
+        </a>
+      ))
+    }
+  </div>
+  <a href="/contact">
+    <div class="btn">Contact</div>
+  </a>
+</div>
+
+<style lang="scss">
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 1rem 0;
+
+    .logo {
+      img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+      }
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 3rem;
+
+      .link {
+        text-decoration: none;
+        color: var(--lead-text-color);
+        font-weight: 500;
+        font-size: 16px;
+
+        letter-spacing: 0.75px;
+
+        &:hover {
+          color: var(--primary-color);
+        }
+      }
+    }
+
+    .btn {
+      background: #323232;
+      color: var(--text-color);
+      font-weight: 500;
+
+      border-radius: 16px;
+      padding: 0.65rem 1rem;
+
+      transition: 0.3s;
+
+      &:hover {
+        background: var(--text-color);
+        color: var(--bg-color);
+      }
+    }
+  }
+</style>

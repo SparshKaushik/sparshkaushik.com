@@ -1,0 +1,70 @@
+---
+import { ViewTransitions } from "astro:transitions";
+import TopBar from "../components/TopBar.astro";
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <TopBar />
+    <ViewTransitions />
+    <slot />
+  </body>
+</html>
+<style is:global lang="scss">
+  :root {
+    --text-color: #fff;
+    --lead-text-color: #676767;
+    --bg-color: #0f0f0f;
+  }
+
+  * {
+    transition: 0.3s;
+  }
+
+  html {
+    font-family: system-ui, sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    background-size: 224px;
+  }
+
+  code {
+    font-family:
+      Menlo,
+      Monaco,
+      Lucida Console,
+      Liberation Mono,
+      DejaVu Sans Mono,
+      Bitstream Vera Sans Mono,
+      Courier New,
+      monospace;
+  }
+
+  body {
+    margin: auto;
+    max-width: 80vw;
+    padding: 1rem;
+  }
+
+  .active {
+    color: #fff !important;
+  }
+
+  a {
+    text-decoration: none !important;
+  }
+</style>
