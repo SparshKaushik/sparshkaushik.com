@@ -12,9 +12,7 @@ const path = Astro.url.pathname;
 ---
 
 <div class="topbar">
-  <div class="logo">
-    <img src="https://ui-avatars.com/api/?name=Sparsh+Kaushik" alt="Logo" />
-  </div>
+  <img class="logo" src="/favicon.svg" alt="logo" />
   <div class="menu">
     {
       Object.keys(routes).map((route) => (
@@ -39,13 +37,11 @@ const path = Astro.url.pathname;
     justify-content: space-between;
 
     padding: 1rem 0;
+    margin-bottom: 5rem;
 
-    .logo {
-      img {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-      }
+    img.logo {
+      width: 48px;
+      height: 48px;
     }
 
     .menu {
@@ -53,7 +49,7 @@ const path = Astro.url.pathname;
       align-items: center;
       justify-content: space-between;
 
-      gap: 3rem;
+      gap: 2.5rem;
 
       .link {
         text-decoration: none;
@@ -75,7 +71,7 @@ const path = Astro.url.pathname;
       font-weight: 500;
 
       border-radius: 16px;
-      padding: 0.65rem 1rem;
+      padding: 0.65rem 1.25rem;
 
       transition: 0.3s;
 

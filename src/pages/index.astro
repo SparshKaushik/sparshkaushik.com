@@ -1,13 +1,375 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Linkedin from "../components/icons/Linkedin.astro";
+import Github from "../components/icons/Github.astro";
+import Right from "../components/icons/Right.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Sparsh Kaushik">
-	<main>
-		
-	</main>
-</Layout>
+  <main>
+    <div class="do-box">
+      <div class="info-box about-me">
+        <div class="image">
+          <img src="/illustration.webp" alt="Sparsh Kaushik" />
+        </div>
+        <div class="about">
+          <div class="title">A Full Stack Developer</div>
+          <div class="name active">Sparsh Kaushik</div>
+          <div class="description">I do wizaradry specialising in web.</div>
+          <a href="#" class="arrow">
+            <Right class="svg" />
+          </a>
+        </div>
+      </div>
+      <div class="info-box projects">
+        <div class="image">
+          <img src="/illustration.webp" alt="Sparsh Kaushik" />
+        </div>
+        <div class="bottom">
+          <div class="text">
+            <div class="lead">Showcase</div>
+            <div class="title active">Projects</div>
+          </div>
+          <a href="#" class="arrow free">
+            <Right class="svg" />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="teen-box">
+      <div class="info-box stats">
+        <div class="info-box stat">
+          <div class="value active">3</div>
+          <div class="title">Client<br />Projects</div>
+        </div>
+        <div class="info-box stat">
+          <div class="value active">3</div>
+          <div class="title">Own<br />Projects</div>
+        </div>
+      </div>
+      <div class="info-box social">
+        <div class="profiles">
+          <button class="linkedin info-box profile">
+            <Linkedin class="svg" />
+          </button>
+          <button class="github info-box profile">
+            <Github class="svg" />
+          </button>
+        </div>
+        <div class="bottom">
+          <div class="text">
+            <div class="lead">Stay With Me</div>
+            <div class="title active">Profiles</div>
+          </div>
+          <a href="#" class="arrow free">
+            <Right class="svg" />
+          </a>
+        </div>
+      </div>
+      <div class="info-box contact">
+        <div class="bg">
+          <img src="/bg.svg" />
+        </div>
+        <div class="hehe"></div>
+        <div class="bottom">
+          <div class="text">
+            <div class="lead">Let's Get In</div>
+            <div class="title active">Touch</div>
+          </div>
+          <a href="#" class="arrow top">
+            <Right class="svg" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
 
-<style>
-	
-</style>
+  <style lang="scss">
+    main {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      gap: 1.5rem;
+
+      .do-box {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 1rem;
+
+        @media screen and (max-width: 768px) {
+          grid-template-columns: 1fr;
+        }
+
+        .about-me {
+          display: flex;
+          align-items: center;
+          gap: 2rem;
+
+          .image {
+            img {
+              width: 8rem;
+            }
+          }
+
+          .about {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            .title {
+              text-transform: uppercase;
+              font-size: 1rem;
+              line-height: 1rem;
+              font-weight: 700;
+            }
+
+            .name {
+              text-transform: uppercase;
+              font-size: 2rem;
+              line-height: 2rem;
+              font-weight: 700;
+            }
+          }
+        }
+
+        .projects {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+
+          .image {
+            img {
+              height: 4rem;
+            }
+          }
+        }
+      }
+
+      .teen-box {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 2fr;
+        gap: 1rem;
+
+        @media screen and (max-width: 768px) {
+          grid-template-columns: 1fr;
+        }
+
+        .stats {
+          display: flex;
+          align-items: center;
+          gap: 2rem;
+
+          .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+
+            padding: 3rem 3rem;
+
+            .title {
+              text-transform: uppercase;
+              font-size: 1rem;
+              line-height: 1rem;
+              font-weight: 700;
+
+              text-align: center;
+            }
+
+            .value {
+              text-transform: uppercase;
+              font-size: 2rem;
+              line-height: 2rem;
+              font-weight: 700;
+
+              text-align: center;
+            }
+          }
+        }
+
+        .social {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          gap: 1rem;
+
+          .profiles {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+          }
+
+          .profile {
+            padding: 1rem;
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            transition: all 0.2s ease-in-out;
+
+            &::before,
+            &::after {
+              border-radius: 50%;
+            }
+
+            &.linkedin .svg {
+              stroke: var(--text-color);
+            }
+
+            &.github .svg {
+              fill: var(--text-color);
+            }
+
+            &:hover {
+              background: var(--text-color);
+
+              &.linkedin .svg {
+                stroke: var(--bg-color);
+              }
+              &.github .svg {
+                fill: var(--bg-color);
+              }
+            }
+          }
+        }
+
+        .contact {
+          position: relative;
+
+          flex-direction: column;
+          justify-content: space-around;
+          gap: 1rem;
+
+          z-index: 1;
+
+          .bg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: center;
+
+              border-radius: 30px;
+
+              opacity: 0.8;
+            }
+          }
+        }
+      }
+
+      .info-box {
+        position: relative;
+
+        display: flex;
+        align-items: center;
+
+        padding: 1.5rem 2rem;
+
+        &:before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          z-index: -1;
+          background: linear-gradient(
+            120deg,
+            rgba(255, 255, 255, 0.3),
+            rgba(255, 255, 255, 0.05)
+          );
+          border-radius: 30px;
+          opacity: 0.1;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(
+            120deg,
+            rgb(255 255 255 / 12%),
+            rgb(255 255 255 / 1%)
+          );
+          z-index: -2;
+          border-radius: 30px;
+          margin: -1px;
+          opacity: 0.5;
+        }
+
+        .bottom {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .text {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+
+          .lead {
+            text-transform: uppercase;
+            font-size: 1rem;
+            line-height: 1rem;
+            font-weight: 700;
+          }
+
+          .title {
+            text-transform: uppercase;
+            font-size: 2rem;
+            line-height: 2rem;
+            font-weight: 700;
+          }
+        }
+
+        .arrow {
+          position: absolute;
+          right: 2rem;
+          bottom: 2rem;
+
+          transition: all 0.1s ease-in-out !important;
+
+          &.free {
+            position: unset;
+          }
+          &.top {
+            top: 2rem;
+            bottom: unset;
+          }
+          &:hover {
+            .svg {
+              stroke: var(--text-color);
+            }
+          }
+
+          .svg {
+            width: 2rem;
+            height: 2rem;
+            stroke: var(--secondary-text-color);
+          }
+        }
+      }
+    }
+  </style>
+</Layout>
