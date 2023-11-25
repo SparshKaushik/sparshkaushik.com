@@ -1,0 +1,312 @@
+---
+import Icon from "astro-icon";
+import Layout from "../../layouts/Layout.astro";
+
+const technologies = [
+  {
+    name: "HTML",
+    icon: "logos:html-5",
+  },
+  {
+    name: "CSS",
+    icon: "logos:css-3",
+  },
+  {
+    name: "SASS",
+    icon: "logos:sass",
+  },
+  {
+    name: "Tailwind",
+    icon: "logos:tailwindcss-icon",
+  },
+  {
+    name: "JavaScript",
+    icon: "logos:javascript",
+  },
+  {
+    name: "TypeScript",
+    icon: "logos:typescript-icon",
+  },
+  {
+    name: "React",
+    icon: "logos:react",
+  },
+  {
+    name: "SvelteKit",
+    icon: "logos:svelte-icon",
+  },
+  {
+    name: "Astro",
+    icon: "logos:astro",
+  },
+  {
+    name: "NodeJS",
+    icon: "logos:nodejs-icon",
+  },
+  {
+    name: "Golang",
+    icon: "logos:go",
+  },
+  {
+    name: "Python",
+    icon: "logos:python",
+  },
+  {
+    name: "Flask",
+    icon: "logos:flask",
+  },
+  {
+    name: "Firebase",
+    icon: "logos:firebase",
+  },
+  {
+    name: "MySQL",
+    icon: "logos:mysql",
+  },
+  {
+    name: "PostgreSQL",
+    icon: "logos:postgresql",
+  },
+  {
+    name: "SQLite",
+    icon: "logos:sqlite",
+  },
+  {
+    name: "MongoDB",
+    icon: "logos:mongodb",
+  },
+  {
+    name: "Docker",
+    icon: "logos:docker-icon",
+  },
+  {
+    name: "Linux",
+    icon: "logos:linux-tux",
+  },
+  {
+    name: "Git",
+    icon: "logos:git-icon",
+  },
+  {
+    name: "GitHub",
+    icon: "mdi:github",
+  },
+  {
+    name: "Figma",
+    icon: "logos:figma",
+  },
+];
+---
+
+<Layout title="About">
+  <main>
+    <div class="content">
+      <div class="info-box profile">
+        <img src="/illustration.webp" alt="Profile picture" />
+        <div>
+          <div class="name active">Sparsh Kaushik</div>
+          <div class="lead">Full Stack Developer</div>
+        </div>
+        <div class="socials"></div>
+      </div>
+      <div class="resume">
+        <div class="heading">About Me</div>
+        <p>
+          Welcome to my digital space! I'm Sparsh Kaushik, yet another nerdy,
+          passionate, and versatile developer with a keen eye for full-stack web
+          development. My skills extend to the realm of backend development, API
+          creation, and the seamless integration of cloud services. Proficient
+          in both SQL and NoSQL database management systems, I ensure robust
+          data handling in every project.
+        </p>
+        <p>
+          In my technological toolkit, you'll find expertise in
+          JavaScript/TypeScript. I craft engaging user experiences with
+          frameworks like React, Svelte, and SvelteKit. On the backend, I
+          leverage NodeJS/Golang/Flask, while my database mastery spans MySQL,
+          SQLite, and cloud-based solutions like Firebase and Supabase. Whether
+          it's AWS, Azure, or OCS, I'm well-versed in deploying applications on
+          various cloud platforms. Beyond coding, I bring creativity to the
+          table using design tools like Figma and Photoshop, and I streamline
+          development with Tailwind CSS. Git, GitHub, Docker, and Linux round
+          out my skill set, ensuring a comprehensive approach to building and
+          maintaining cutting-edge digital solutions. Let's turn ideas into
+          reality!
+        </p>
+        <div class="heading">Experience</div>
+        <div class="exp">
+          <span class="lead">Nov 2022 - Present</span>
+          <span class="title">Full Stack Developer</span>
+          <span class="comp">VIPS-TC [ERP]</span>
+          <p>
+            In my role as a member of a five-person team developing our
+            college's ERP system, I focused on a web application with four
+            modules. I contributed to the Event Hall Booking and Management,
+            Employee Leave Management and Attendance, Student Attendance and
+            LMS, and Management Dashboard modules. We aimed to streamline event
+            reservations, automate staff leave and attendance, enhance student
+            attendance tracking and LMS, and provide administrators with a
+            centralized management dashboard. Additionally, I actively
+            participated in creating a mobile app for students, optimizing their
+            access to the LMS. This project sharpened my technical skills and
+            highlighted the importance of teamwork in delivering a precise and
+            efficient ERP solution for our college.
+          </p>
+        </div>
+        <div class="exp">
+          <span class="lead">Aug 2023</span>
+          <span class="title">IT Admit Intern</span>
+          <span class="comp">Larsen & Toubro</span>
+          <p>
+            During this internship, I gained hands-on experience in Identity and
+            Access Management (IAM), while also immersing myself in a dynamic
+            workplace culture that emphasized collaboration.
+          </p>
+        </div>
+        <div class="heading">Education</div>
+        <div class="exp">
+          <span class="lead">2021 - Present</span>
+          <span class="title">B.Tech. AIML</span>
+          <span class="comp">VIPS-TC</span>
+          <p>
+            I'm currently pursuing a Bachelor of Technology in Computer Science
+            and Engineering at VIPS-TC, where I'm a member of the C.O.D.E. the
+            technical society. I'm also a member of the college's ERP Team.
+          </p>
+        </div>
+        <div class="exp">
+          <span class="lead">2021</span>
+          <span class="title">SECONDARY SCHOOL</span>
+          <span class="comp">Delhi International Public School</span>
+        </div>
+        <div class="heading">Technologies</div>
+        <div class="tech">
+          {
+            technologies.map((tech) => (
+              <div>
+                <Icon name={tech.icon} />
+                {tech.name}
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <style lang="scss">
+    main {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      gap: 1.5rem;
+
+      .content {
+        width: 100%;
+
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 5rem;
+
+        .profile {
+          position: sticky;
+          top: 10%;
+
+          height: fit-content;
+
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          gap: 2rem;
+
+          img {
+            max-height: 30vh;
+          }
+
+          .name {
+            font-size: 1.5rem;
+            font-weight: 600;
+          }
+
+          .lead {
+            font-size: 1.25rem;
+            font-weight: 500;
+          }
+
+          .socials {
+            display: flex;
+            align-items: center;
+
+            gap: 1rem;
+          }
+        }
+
+        .resume {
+          .heading {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text-color);
+
+            &:not(:first-child) {
+              margin-top: 2rem;
+            }
+          }
+
+          p {
+            font-size: 1rem;
+            font-weight: 400;
+          }
+
+          .exp {
+            display: flex;
+            flex-direction: column;
+
+            margin-top: 1rem;
+
+            .lead {
+              font-size: 1.1rem;
+              font-weight: 500;
+            }
+
+            .title {
+              font-size: 1.15rem;
+              font-weight: 500;
+              color: var(--accent-color);
+            }
+
+            .comp {
+              font-size: 1rem;
+              font-weight: 400;
+            }
+
+            p {
+              color: var(--text-color);
+            }
+          }
+
+          .tech {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1rem;
+
+            > div {
+              display: flex;
+              align-items: center;
+
+              gap: 0.5rem;
+
+              > svg {
+                height: 32px;
+                width: 32px;
+              }
+            }
+          }
+        }
+      }
+    }
+  </style>
+</Layout>

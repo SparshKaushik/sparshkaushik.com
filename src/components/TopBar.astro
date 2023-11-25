@@ -39,6 +39,10 @@ const path = Astro.url.pathname;
     padding: 1rem 0;
     margin-bottom: 5rem;
 
+    @media screen and (max-width: 480px) {
+      padding: 1rem 1.5rem;
+    }
+
     img.logo {
       width: 48px;
       height: 48px;
@@ -51,6 +55,10 @@ const path = Astro.url.pathname;
 
       gap: 2.5rem;
 
+      @media screen and (max-width: 480px) {
+        display: none;
+      }
+
       .link {
         text-decoration: none;
         color: var(--lead-text-color);
@@ -59,7 +67,8 @@ const path = Astro.url.pathname;
 
         letter-spacing: 0.75px;
 
-        &:hover {
+        &:hover,
+        &:active {
           color: var(--primary-color);
         }
       }
@@ -75,7 +84,8 @@ const path = Astro.url.pathname;
 
       transition: 0.3s;
 
-      &:hover {
+      &:hover,
+      &:active {
         background: var(--text-color);
         color: var(--bg-color);
       }
