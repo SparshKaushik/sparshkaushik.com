@@ -17,7 +17,15 @@ const path = Astro.url.pathname;
     {
       Object.keys(routes).map((route) => (
         <a
-          class={`link ${path === routes[route] ? "active" : ""}`}
+          class={`link ${
+            (
+              route === "Home"
+                ? path === routes[route]
+                : path.startsWith(routes[route])
+            )
+              ? "active"
+              : ""
+          }`}
           href={routes[route]}
         >
           {route}
