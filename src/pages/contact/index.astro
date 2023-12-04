@@ -1,9 +1,111 @@
 ---
+export const prerender = false;
 import Layout from "../../layouts/Layout.astro";
 import Icon from "astro-icon";
+import nodemailer from "nodemailer";
+
+const errors = {
+  name: "",
+  email: "",
+  subject: "",
+  message: "",
+  general: "",
+};
+
+let success = false;
+
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+    const name = data.get("name");
+    const email = data.get("email");
+    const subject = data.get("subject");
+    const message = data.get("message");
+    const token = data.get("cf-turnstile-response");
+    const ip = Astro.request.headers.get("CF-Connecting-IP");
+    if (typeof name !== "string" || name.length < 3) {
+      errors.name = "Name must be at least 3 characters long";
+    }
+    if (
+      typeof email !== "string" ||
+      !email.match(
+        /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+      )
+    ) {
+      errors.email = "Email must be valid";
+    }
+    if (typeof subject !== "string" || subject.length < 3) {
+      errors.subject = "Subject must be at least 3 characters long";
+    }
+    if (typeof message !== "string" || message.length < 10) {
+      errors.message = "Message must be at least 10 characters long";
+    }
+    if (typeof token !== "string" || token.length < 10) {
+      errors.general = "Please complete the captcha";
+    }
+    if (typeof ip !== "string" || ip.length < 7) {
+      errors.general = "Something went wrong";
+    }
+    if (!Object.values(errors).some((error) => error.length > 0)) {
+      let formData = new FormData();
+      formData.append("secret", import.meta.env.TURNSTILE_SECRETKEY);
+      formData.append("response", token as string);
+      formData.append("remoteip", ip as string);
+      const url = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+      const result = await fetch(url, {
+        body: formData,
+        method: "POST",
+      });
+      const outcome = await result.json();
+      if (outcome.success) {
+        const transporter = nodemailer.createTransport({
+          host: import.meta.env.SMTP_HOST,
+          port: import.meta.env.SMTP_PORT,
+          auth: {
+            user: import.meta.env.SMTP_USER,
+            pass: import.meta.env.SMTP_PASS,
+          },
+          from: import.meta.env.SMTP_FROM,
+        });
+        await transporter
+          .sendMail({
+            from: import.meta.env.SMTP_FROM,
+            to: import.meta.env.SMTP_TO,
+            subject: `New Contact Form Submission on ${Astro.url}`,
+            text: `
+          Hallo ,
+            Name: ${name}
+            Email: ${email}
+            Subject: ${subject}
+            Message: ${message}
+
+            Client Address: ${Astro.clientAddress}
+            Other Info: ${JSON.stringify(Astro.request)}
+        `,
+          })
+          .then(() => {
+            success = true;
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      } else {
+        errors.general = "Error verifying captcha :" + outcome["error-codes"];
+      }
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      errors.general = "Something went wrong";
+      console.error(error.message);
+    }
+  }
+}
 ---
 
 <Layout title="Contact">
+  <script
+    slot="head"
+    src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
   <main>
     <div class="infos">
       <div class="heading active">My Socials</div>
@@ -66,17 +168,38 @@ import Icon from "astro-icon";
         <img src="bg2.svg" />
       </div> -->
       <div class="heading active">Contact Me</div>
+      {
+        success && (
+          <div class="status">
+            Your message has been sent successfully! I will get back to you
+            soon.
+          </div>
+        )
+      }
       <div class="input">
         <input type="text" name="name" placeholder="Name" />
       </div>
+      <div class="error">{errors.name.length > 0 && errors.name}</div>
       <div class="input">
         <input type="email" name="email" placeholder="Email" />
       </div>
+      <div class="error">{errors.email.length > 0 && errors.email}</div>
       <div class="input">
         <input type="text" name="subject" placeholder="Subject" />
       </div>
+      <div class="error">{errors.subject.length > 0 && errors.subject}</div>
       <div class="input textarea">
         <textarea name="message" placeholder="Message"></textarea>
+      </div>
+      <div class="error textarea">
+        {errors.message.length > 0 && errors.message}
+      </div>
+      <div
+        class="cf-turnstile"
+        data-sitekey={import.meta.env.TURNSTILE_SITEKEY}
+        data-callback="javascriptCallback"
+        data-theme="dark"
+      >
       </div>
       <button class="btn" type="submit">Send</button>
     </form>
@@ -127,7 +250,6 @@ import Icon from "astro-icon";
 
       display: flex;
       flex-direction: column;
-      gap: 1rem;
 
       padding: 2rem 2.5rem;
 
@@ -200,6 +322,13 @@ import Icon from "astro-icon";
         font-weight: 600;
         color: var(--text-color);
         letter-spacing: 0.1rem;
+
+        margin-bottom: 1rem;
+      }
+
+      .status {
+        align-self: self-start;
+        font-weight: 500;
       }
 
       .input {
@@ -212,8 +341,26 @@ import Icon from "astro-icon";
         }
       }
 
-      .btn {
+      .error {
+        align-self: self-start;
+        color: #ff3e3ec7;
+        font-weight: 500;
+        margin-bottom: 1rem;
+
+        &.textarea {
+          margin-top: 2rem;
+          margin-bottom: 0;
+        }
+      }
+
+      .cf-turnstile {
+        align-self: self-start;
+        width: 100%;
         margin-top: 2rem;
+      }
+
+      .btn {
+        margin-top: 1rem;
         width: 100%;
         border: none;
         border-radius: 10px;
