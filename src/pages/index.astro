@@ -14,12 +14,12 @@ import Layout from "../layouts/Layout.astro";
           <div class="title">A Full Stack Developer</div>
           <div class="name active">Sparsh Kaushik</div>
           <div class="description">I do wizaradry specialising in web.</div>
-          <a href="#" class="arrow">
+          <a href="/about" class="arrow">
             <Right class="svg" />
           </a>
         </div>
       </div>
-      <div class="info-box projects">
+      <!-- <div class="info-box projects">
         <div></div>
         <img src="/illustration.webp" alt="Sparsh Kaushik" />
         <div class="bottom">
@@ -31,12 +31,12 @@ import Layout from "../layouts/Layout.astro";
             <Right class="svg" />
           </a>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="teen-box">
       <div class="info-box stats">
         <div class="info-box stat">
-          <div class="value active">3</div>
+          <div class="value active">4</div>
           <div class="title">Client<br />Projects</div>
         </div>
         <div class="info-box stat">
@@ -46,19 +46,19 @@ import Layout from "../layouts/Layout.astro";
       </div>
       <div class="info-box social">
         <div class="profiles">
-          <button class="linkedin info-box profile">
+          <a class="linkedin info-box profile" href="https://www.linkedin.com/in/sparshkaushik/">
             <Linkedin class="svg" />
-          </button>
-          <button class="github info-box profile">
+          </a>
+          <a class="github info-box profile" href="https://www.github.com/sparshkaushik/">
             <Github class="svg" />
-          </button>
+          </a>
         </div>
         <div class="bottom">
           <div class="text">
             <div class="lead">Stay With Me</div>
             <div class="title active">Profiles</div>
           </div>
-          <a href="#" class="arrow free">
+          <a href="/contact" class="arrow free">
             <Right class="svg" />
           </a>
         </div>
@@ -73,7 +73,7 @@ import Layout from "../layouts/Layout.astro";
             <div class="lead">Let's Get In</div>
             <div class="title active">Touch</div>
           </div>
-          <a href="#" class="arrow top">
+          <a href="/contact" class="arrow top">
             <Right class="svg" />
           </a>
         </div>
@@ -95,7 +95,7 @@ import Layout from "../layouts/Layout.astro";
     .do-box {
       width: 100%;
       display: grid;
-      grid-template-columns: 2fr 1fr;
+      // grid-template-columns: 2fr 1fr;
       gap: 1rem;
 
       @media screen and (max-width: 480px) {

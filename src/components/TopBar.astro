@@ -4,7 +4,7 @@ const routes: {
 } = {
   Home: "/",
   About: "/about",
-  Work: "/work",
+  // Work: "/work",
   Contact: "/contact",
 };
 
@@ -25,9 +25,9 @@ const path = Astro.url.pathname;
       ))
     }
   </div>
-  <a href="/contact">
+  <!-- <a href="/contact">
     <div class="btn">Contact</div>
-  </a>
+  </a> -->
 </div>
 
 <style lang="scss">
@@ -71,23 +71,6 @@ const path = Astro.url.pathname;
         &:active {
           color: var(--primary-color);
         }
-      }
-    }
-
-    .btn {
-      background: #323232;
-      color: var(--text-color);
-      font-weight: 500;
-
-      border-radius: 16px;
-      padding: 0.65rem 1.25rem;
-
-      transition: 0.3s;
-
-      &:hover,
-      &:active {
-        background: var(--text-color);
-        color: var(--bg-color);
       }
     }
   }
