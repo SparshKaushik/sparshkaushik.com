@@ -40,22 +40,18 @@ if (Astro.request.method === "POST") {
     if (typeof message !== "string" || message.length < 10) {
       errors.message = "Message must be at least 10 characters long";
     }
-    if (typeof token !== "string" || token.length < 10) {
-      errors.general = "Please complete the captcha";
-    }
-    if (typeof ip !== "string" || ip.length < 7) {
-      errors.general = "Something went wrong";
-    }
     if (!Object.values(errors).some((error) => error.length > 0)) {
       let formData = new FormData();
       formData.append("secret", import.meta.env.TURNSTILE_SECRETKEY);
       formData.append("response", token as string);
       formData.append("remoteip", ip as string);
-      const url = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
-      const result = await fetch(url, {
-        body: formData,
-        method: "POST",
-      });
+      const result = await fetch(
+        "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+        {
+          body: formData,
+          method: "POST",
+        }
+      );
       const outcome = await result.json();
       if (outcome.success) {
         const transporter = nodemailer.createTransport({
@@ -73,15 +69,15 @@ if (Astro.request.method === "POST") {
             to: import.meta.env.SMTP_TO,
             subject: `New Contact Form Submission on ${Astro.url}`,
             text: `
-          Hallo ,
-            Name: ${name}
-            Email: ${email}
-            Subject: ${subject}
-            Message: ${message}
+              Hallo ,
+                Name: ${name}
+                Email: ${email}
+                Subject: ${subject}
+                Message: ${message}
 
-            Client Address: ${Astro.clientAddress}
-            Other Info: ${JSON.stringify(Astro.request)}
-        `,
+                Client Address: ${Astro.clientAddress}
+                Other Info: ${JSON.stringify(Astro.request)}
+            `,
           })
           .then(() => {
             success = true;
@@ -95,8 +91,8 @@ if (Astro.request.method === "POST") {
     }
   } catch (error) {
     if (error instanceof Error) {
-      errors.general = "Something went wrong";
-      console.error(error.message);
+      errors.general = "Something went wrong. Please try again later.";
+      console.error(error);
     }
   }
 }
@@ -176,6 +172,7 @@ if (Astro.request.method === "POST") {
           </div>
         )
       }
+      <div class="error">{errors.general.length > 0 && errors.general}</div>
       <div class="input">
         <input type="text" name="name" placeholder="Name" />
       </div>
