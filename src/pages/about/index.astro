@@ -33,6 +33,14 @@ const technologies = [
     icon: "logos:react",
   },
   {
+    name: "React Native",
+    icon: "logos:react",
+  },
+  {
+    name: "Expo",
+    icon: "vscode-icons:file-type-light-expo",
+  },
+  {
     name: "SvelteKit",
     icon: "logos:svelte-icon",
   },
@@ -54,11 +62,19 @@ const technologies = [
   },
   {
     name: "Flask",
-    icon: "logos:flask",
+    icon: "flask-light",
   },
   {
     name: "Firebase",
     icon: "logos:firebase",
+  },
+  {
+    name: "Supabase",
+    icon: "supabase",
+  },
+  {
+    name: "Prisma",
+    icon: "logos:prisma",
   },
   {
     name: "MySQL",
@@ -212,6 +228,11 @@ const technologies = [
         grid-template-columns: 1fr 2fr;
         gap: 5rem;
 
+        grid-template-columns: 1fr;
+        @media screen and (max-width: 768px) {
+          gap: 2rem;
+        }
+
         .profile {
           position: sticky;
           top: 10%;
@@ -223,6 +244,11 @@ const technologies = [
           align-items: center;
 
           gap: 2rem;
+
+          @media screen and (max-width: 768px) {
+            position: relative;
+            top: 0;
+          }
 
           img {
             max-height: 30vh;

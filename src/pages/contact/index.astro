@@ -213,6 +213,12 @@ if (Astro.request.method === "POST") {
 
     margin-top: -2rem;
 
+    @media screen and (max-width: 768px) {
+      grid-template-columns: 1fr;
+
+      padding: 0 1rem;
+    }
+
     .infos {
       display: flex;
       flex-direction: column;

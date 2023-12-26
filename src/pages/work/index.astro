@@ -1,0 +1,196 @@
+---
+import Icon from "astro-icon";
+import Right from "../../components/icons/Right.astro";
+import Layout from "../../layouts/Layout.astro";
+import ERPCoverImage from "../../assets/erp/cover.png";
+import AdmissionCoverImage from "../../assets/admission/cover.png";
+import ShrtyCoverImage from "../../assets/shrty/cover.png";
+import KuchKareCoverImage from "../../assets/mytodo/cover.png";
+import ExpenseCoverImage from "../../assets/expense/cover.png";
+import { Image } from "astro:assets";
+
+const projects = [
+  {
+    image: ExpenseCoverImage,
+    stackIcons: [
+      "vscode-icons:file-type-light-expo",
+      "logos:react",
+      "logos:typescript-icon",
+      "logos:go",
+      "simple-icons:prisma",
+      "logos:postgresql",
+    ],
+    lead: "Personal Project",
+    title: "Expense Tracker",
+    link: "/work/details/expense",
+  },
+  {
+    image: ERPCoverImage,
+    stackIcons: [
+      "logos:react",
+      "logos:typescript-icon",
+      "logos:sass",
+      "logos:firebase",
+      "vscode-icons:file-type-light-expo",
+    ],
+    lead: "VIPS ERP",
+    title: "Manthan",
+    link: "/work/details/erp",
+  },
+  {
+    image: AdmissionCoverImage,
+    stackIcons: [
+      "logos:svelte-icon",
+      "logos:javascript",
+      "logos:tailwindcss-icon",
+      "logos:firebase",
+    ],
+    lead: "Client",
+    title: "School Admission Portal",
+    link: "/work/details/admission",
+  },
+  {
+    image: KuchKareCoverImage,
+    stackIcons: [
+      "logos:svelte-icon",
+      "logos:sass",
+      "logos:typescript-icon",
+      "supabase",
+    ],
+    lead: "Personal Project",
+    title: "Kuch Kare - Todo App",
+    link: "/work/details/mytodo",
+  },
+  {
+    image: ShrtyCoverImage,
+    stackIcons: [
+      "logos:html-5",
+      "logos:css-3",
+      "logos:javascript",
+      "flask-light",
+    ],
+    lead: "Personal Project",
+    title: "Shrty - URL Shortener",
+    // https://web.archive.org/web/20220909161705/https://shrty.ga/
+    link: "/work/details/shrty",
+  },
+];
+---
+
+<Layout title="Sparsh Kaushik">
+  <main>
+    <div class="header"></div>
+    <div class="projects">
+      {
+        projects.map((project) => (
+          <div class="project info-box">
+            <div class="img">
+              <Image src={project.image} alt={project.title} />
+              <div class="stack">
+                {project.stackIcons.map((icon) => (
+                  <Icon name={icon} />
+                ))}
+              </div>
+            </div>
+            <div class="bottom">
+              <div>
+                <div class="lead">{project.lead}</div>
+                <div class="title">{project.title}</div>
+              </div>
+              <!--a href={project.link} class="arrow free">
+                <Right class="svg" />
+              </a-->
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </main>
+</Layout>
+
+<style lang="scss">
+  main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 1.5rem;
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 1.5rem;
+
+      @media screen and (max-width: 768px) {
+        grid-template-columns: repeat(1, 1fr);
+      }
+
+      @media screen and (min-width: 768px) and (max-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .project {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        gap: 1rem;
+
+        padding: 1.5rem;
+
+        .img {
+          position: relative;
+
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: 1rem;
+
+            object-fit: cover;
+            object-position: left;
+          }
+
+          .stack {
+            position: absolute;
+            bottom: -1rem;
+            right: 0.5rem;
+
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+
+            padding: 0.5rem;
+            background: rgba(15, 15, 15, 0.8);
+            border-radius: 0.5rem;
+
+            > svg {
+              width: 1.25rem;
+              height: 1.25rem;
+            }
+          }
+        }
+
+        .bottom {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 1rem;
+        }
+
+        .lead {
+          font-size: 1.1rem;
+          font-weight: 500;
+        }
+
+        .title {
+          font-size: 1.15rem;
+          font-weight: 500;
+          color: var(--text-color);
+        }
+      }
+    }
+  }
+</style>

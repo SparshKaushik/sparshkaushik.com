@@ -1,10 +1,12 @@
 ---
+import Icon from "astro-icon";
+import Right from "./icons/Right.astro";
 const routes: {
   [key: string]: string;
 } = {
   Home: "/",
   About: "/about",
-  // Work: "/work",
+  Work: "/work",
   Contact: "/contact",
 };
 
@@ -33,9 +35,13 @@ const path = Astro.url.pathname;
       ))
     }
   </div>
-  <!-- <a href="/contact">
-    <div class="btn">Contact</div>
-  </a> -->
+  {
+    path !== "/" && (
+      <a href="/">
+        <Right class="icon" />
+      </a>
+    )
+  }
 </div>
 
 <style lang="scss">
@@ -49,6 +55,7 @@ const path = Astro.url.pathname;
 
     @media screen and (max-width: 480px) {
       padding: 1rem 1.5rem;
+      margin-bottom: 3rem;
     }
 
     img.logo {
@@ -79,6 +86,21 @@ const path = Astro.url.pathname;
         &:active {
           color: var(--primary-color);
         }
+      }
+    }
+
+    .icon {
+      display: none;
+      width: 24px;
+      height: 24px;
+      transform: rotate(180deg);
+
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 0.5rem;
+      border-radius: 50%;
+
+      @media screen and (max-width: 480px) {
+        display: block;
       }
     }
   }
