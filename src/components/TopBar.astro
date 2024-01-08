@@ -89,18 +89,19 @@ const path = Astro.url.pathname;
       }
     }
 
-    .icon {
+    > a {
       display: none;
-      width: 24px;
-      height: 24px;
-      transform: rotate(180deg);
-
-      background-color: rgba(255, 255, 255, 0.1);
-      padding: 0.5rem;
-      border-radius: 50%;
-
       @media screen and (max-width: 480px) {
         display: block;
+      }
+      .icon {
+        width: 24px;
+        height: 24px;
+        transform: rotate(180deg);
+
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 0.5rem;
+        border-radius: 50%;
       }
     }
   }
