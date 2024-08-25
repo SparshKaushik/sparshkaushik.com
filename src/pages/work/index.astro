@@ -7,73 +7,196 @@ import AdmissionCoverImage from "../../assets/admission/cover.png";
 import ShrtyCoverImage from "../../assets/shrty/cover.png";
 import KuchKareCoverImage from "../../assets/mytodo/cover.png";
 import ExpenseCoverImage from "../../assets/expense/cover.png";
+import TravelCoverImage from "../../assets/travel/cover.png";
+import NightJarCoverImage from "../../assets/nightjar/cover.png";
 import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import Link from "@/components/icons/Link.astro";
 
-const projects = [
+const stacks = {
+  expo: {
+    name: "vscode-icons:file-type-light-expo",
+    title: "Expo",
+    link: "https://expo.dev/",
+  },
+  nextjs: {
+    name: "logos:nextjs-icon",
+    title: "Next.js",
+    link: "https://nextjs.org/",
+  },
+  react: {
+    name: "logos:react",
+    title: "React",
+    link: "https://reactjs.org/",
+  },
+  typescript: {
+    name: "logos:typescript-icon",
+    title: "TypeScript",
+    link: "https://www.typescriptlang.org/",
+  },
+  tailwindcss: {
+    name: "logos:tailwindcss-icon",
+    title: "TailwindCSS",
+    link: "https://tailwindcss.com/",
+  },
+  prisma: {
+    name: "simple-icons:prisma",
+    title: "Prisma",
+    link: "https://www.prisma.io/",
+  },
+  postgresql: {
+    name: "logos:postgresql",
+    title: "PostgreSQL",
+    link: "https://www.postgresql.org/",
+  },
+  svelte: {
+    name: "logos:svelte-icon",
+    title: "Svelte",
+    link: "https://svelte.dev/",
+  },
+  golang: {
+    name: "logos:go",
+    title: "Go",
+    link: "https://go.dev/",
+  },
+  javascript: {
+    name: "logos:javascript",
+    title: "JavaScript",
+    link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+  },
+  sass: {
+    name: "logos:sass",
+    title: "Sass",
+    link: "https://sass-lang.com/",
+  },
+  firebase: {
+    name: "logos:firebase",
+    title: "Firebase",
+    link: "https://firebase.google.com/",
+  },
+  axios: {
+    name: "axios",
+    title: "Axios",
+    link: "https://axios-http.com/",
+  },
+  "react-query": {
+    name: "react-query",
+    title: "Tanstack React Query",
+    link: "https://tanstack.com/query/v4",
+  },
+  legendstate: {
+    name: "legendstate",
+    title: "Legend State",
+    link: "https://legendstate.com/",
+  },
+  supabase: {
+    name: "supabase",
+    title: "Supabase",
+    link: "https://supabase.com/",
+  },
+};
+
+const projects: {
+  image: ImageMetadata;
+  stackIcons: {
+    name: string;
+    title: string;
+    link?: string;
+  }[];
+  lead: string;
+  title: string;
+  link?: string;
+  appLink?: string;
+}[] = [
+  {
+    image: TravelCoverImage,
+    stackIcons: [
+      stacks.nextjs,
+      stacks.react,
+      stacks.typescript,
+      stacks.tailwindcss,
+      stacks.prisma,
+      stacks.postgresql,
+    ],
+    lead: "Freelance",
+    title: "Travel Planner",
+    appLink: "https://www.traveltoindia.co.in/",
+    // link: "/work/details/travel",
+  },
+  {
+    image: NightJarCoverImage,
+    stackIcons: [
+      stacks.expo,
+      stacks.react,
+      stacks.nextjs,
+      stacks.typescript,
+      stacks.tailwindcss,
+      stacks.axios,
+      stacks["react-query"],
+      stacks.legendstate,
+    ],
+    lead: "Internship",
+    title: "Trailguard AI - Nightjar",
+    appLink: "https://nightjar.in/",
+  },
   {
     image: ExpenseCoverImage,
     stackIcons: [
-      "vscode-icons:file-type-light-expo",
-      "logos:react",
-      "logos:typescript-icon",
-      "logos:go",
-      "simple-icons:prisma",
-      "logos:postgresql",
+      stacks.react,
+      stacks.typescript,
+      stacks.golang,
+      stacks.prisma,
+      stacks.postgresql,
     ],
     lead: "Personal Project",
     title: "Expense Tracker",
-    link: "/work/details/expense",
+    // link: "/work/details/expense",
   },
   {
     image: ERPCoverImage,
-    stackIcons: [
-      "logos:react",
-      "logos:typescript-icon",
-      "logos:sass",
-      "logos:firebase",
-      "vscode-icons:file-type-light-expo",
-    ],
-    lead: "VIPS ERP",
+    stackIcons: [stacks.react, stacks.typescript, stacks.sass, stacks.firebase],
+    lead: "VIPS College ERP",
     title: "Manthan",
     link: "/work/details/erp",
   },
   {
     image: AdmissionCoverImage,
     stackIcons: [
-      "logos:svelte-icon",
-      "logos:javascript",
-      "logos:tailwindcss-icon",
-      "logos:firebase",
+      stacks.svelte,
+      stacks.javascript,
+      stacks.tailwindcss,
+      stacks.firebase,
     ],
-    lead: "Client",
+    lead: "Freelance",
     title: "School Admission Portal",
-    link: "/work/details/admission",
+    // link: "/work/details/admission",
   },
   {
     image: KuchKareCoverImage,
     stackIcons: [
-      "logos:svelte-icon",
-      "logos:sass",
-      "logos:typescript-icon",
-      "supabase",
+      stacks.svelte,
+      stacks.sass,
+      stacks.typescript,
+      stacks.supabase,
     ],
     lead: "Personal Project",
     title: "Kuch Kare - Todo App",
-    link: "/work/details/mytodo",
+    // link: "/work/details/mytodo",
+    appLink: "https://todo.sparshkaushik.com/",
   },
-  {
-    image: ShrtyCoverImage,
-    stackIcons: [
-      "logos:html-5",
-      "logos:css-3",
-      "logos:javascript",
-      "flask-light",
-    ],
-    lead: "Personal Project",
-    title: "Shrty - URL Shortener",
-    // https://web.archive.org/web/20220909161705/https://shrty.ga/
-    link: "/work/details/shrty",
-  },
+  // {
+  //   image: ShrtyCoverImage,
+  //   stackIcons: [
+  //     "logos:html-5",
+  //     "logos:css-3",
+  //     "logos:javascript",
+  //     "flask-light",
+  //   ],
+  //   lead: "Personal Project",
+  //   title: "Shrty - URL Shortener",
+  //   // https://web.archive.org/web/20220909161705/https://shrty.ga/
+  //   link: "/work/details/shrty",
+  // },
 ];
 ---
 
@@ -87,9 +210,35 @@ const projects = [
             <div class="img">
               <Image src={project.image} alt={project.title} />
               <div class="stack">
-                {project.stackIcons.map((icon) => (
-                  <Icon name={icon} />
-                ))}
+                {project.stackIcons.map((icon) =>
+                  icon.link ? (
+                    <a
+                      href={icon.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Icon
+                        name={icon.name}
+                        style={
+                          icon.name === "logos:nextjs-icon"
+                            ? "background: white; border-radius: 100%;"
+                            : ""
+                        }
+                        title={icon.name.split(":")[1]}
+                      />
+                    </a>
+                  ) : (
+                    <Icon
+                      name={icon.name}
+                      style={
+                        icon.name === "logos:nextjs-icon"
+                          ? "background: white; border-radius: 100%;"
+                          : ""
+                      }
+                      title={icon.name.split(":")[1]}
+                    />
+                  )
+                )}
               </div>
             </div>
             <div class="bottom">
@@ -97,9 +246,16 @@ const projects = [
                 <div class="lead">{project.lead}</div>
                 <div class="title">{project.title}</div>
               </div>
-              <!--a href={project.link} class="arrow free">
-                <Right class="svg" />
-              </a-->
+              {project.appLink && (
+                <a href={project.appLink} class="arrow free">
+                  <Link class="svg small" />
+                </a>
+              )}
+              {project.link && (
+                <a href={project.link} class="arrow free">
+                  <Right class="svg" />
+                </a>
+              )}
             </div>
           </div>
         ))
@@ -166,9 +322,14 @@ const projects = [
             background: rgba(15, 15, 15, 0.8);
             border-radius: 0.5rem;
 
-            > svg {
-              width: 1.25rem;
-              height: 1.25rem;
+            > a {
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+              svg {
+                width: 1.25rem;
+                height: 1.25rem;
+              }
             }
           }
         }
@@ -178,6 +339,13 @@ const projects = [
           align-items: center;
           justify-content: space-between;
           gap: 1rem;
+
+          a {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+          }
         }
 
         .lead {

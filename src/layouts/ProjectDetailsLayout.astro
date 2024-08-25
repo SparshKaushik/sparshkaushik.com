@@ -1,0 +1,66 @@
+---
+import Right from "@/components/icons/Right.astro";
+import Layout from "./Layout.astro";
+import type { MarkdownLayoutProps } from "astro";
+
+type Props = MarkdownLayoutProps<{
+  title: string;
+}>;
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title}>
+  <main class="project-details">
+    <slot />
+  </main>
+</Layout>
+
+<style lang="scss" is:global>
+  main.project-details {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    color: #ddd;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 0;
+      color: var(--text-color);
+    }
+
+    a:not(.arrow) {
+      color: var(--text-color);
+      text-decoration: none;
+      border-bottom: 1px solid var(--text-color);
+      transition: border-bottom-width 0.2s ease-in-out;
+
+      &:hover {
+        border-bottom-width: 3px;
+      }
+    }
+
+    li {
+      svg {
+        margin-left: 0.5rem;
+        margin-bottom: -0.2rem;
+
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
+</style>
