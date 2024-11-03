@@ -10,16 +10,15 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.3.1",
+    "@astrojs/check": "^0.3.4",
     "@astrojs/mdx": "^1.1.5",
     "@astrojs/vercel": "^5.2.0",
-    "astro": "^4.0.3",
-    "astro-icon": "^0.8.1",
-    "nodemailer": "^6.9.7",
-    "sass": "^1.69.5",
-    "typescript": "^5.3.2"
+    "astro": "^4.16.8",
+    "astro-icon": "^0.8.2",
+    "sass": "^1.80.6",
+    "typescript": "^5.6.3"
   },
   "devDependencies": {
-    "@types/nodemailer": "^6.4.14"
+    "@types/nodemailer": "^6.4.16"
   }
 }

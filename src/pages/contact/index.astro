@@ -2,7 +2,6 @@
 export const prerender = false;
 import Layout from "../../layouts/Layout.astro";
 import Icon from "astro-icon";
-import nodemailer from "nodemailer";
 
 const errors = {
   name: "",
@@ -21,8 +20,6 @@ if (Astro.request.method === "POST") {
     const email = data.get("email");
     const subject = data.get("subject");
     const message = data.get("message");
-    const token = data.get("cf-turnstile-response");
-    const ip = Astro.request.headers.get("CF-Connecting-IP");
     if (typeof name !== "string" || name.length < 3) {
       errors.name = "Name must be at least 3 characters long";
     }
@@ -41,53 +38,22 @@ if (Astro.request.method === "POST") {
       errors.message = "Message must be at least 10 characters long";
     }
     if (!Object.values(errors).some((error) => error.length > 0)) {
-      let formData = new FormData();
-      formData.append("secret", import.meta.env.TURNSTILE_SECRETKEY);
-      formData.append("response", token as string);
-      formData.append("remoteip", ip as string);
-      const result = await fetch(
-        "https://challenges.cloudflare.com/turnstile/v0/siteverify",
-        {
-          body: formData,
-          method: "POST",
-        }
-      );
-      const outcome = await result.json();
-      if (outcome.success) {
-        const transporter = nodemailer.createTransport({
-          host: import.meta.env.SMTP_HOST,
-          port: import.meta.env.SMTP_PORT,
-          auth: {
-            user: import.meta.env.SMTP_USER,
-            pass: import.meta.env.SMTP_PASS,
-          },
-          from: import.meta.env.SMTP_FROM,
-        });
-        await transporter
-          .sendMail({
-            from: import.meta.env.SMTP_FROM,
-            to: import.meta.env.SMTP_TO,
-            subject: `New Contact Form Submission on ${Astro.url}`,
-            text: `
-              Hallo ,
-                Name: ${name}
-                Email: ${email}
-                Subject: ${subject}
-                Message: ${message}
-
-                Client Address: ${Astro.clientAddress}
-                Other Info: ${JSON.stringify(Astro.request)}
-            `,
-          })
-          .then(() => {
-            success = true;
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      } else {
-        errors.general = "Error verifying captcha :" + outcome["error-codes"];
-      }
+      await fetch(
+        `https://api.telegram.org/bot${import.meta.env.TOKEN}/sendMessage?` +
+          new URLSearchParams({
+            chat_id: "-649113731",
+            text: `New Contact Form Submission on \n\n
+Hallo , \n
+Name: ${name} \n
+Email: ${email} \n
+Subject: ${subject} \n
+Message: ${message} \n\n
+Client Address: ${Astro.clientAddress} \n
+Other Info: ${JSON.stringify(Astro.request)} \n`,
+          }).toString()
+      )
+        .then(() => (success = true))
+        .catch((error) => (errors.general = error));
     }
   } catch (error) {
     if (error instanceof Error) {
@@ -190,13 +156,6 @@ if (Astro.request.method === "POST") {
       </div>
       <div class="error textarea">
         {errors.message.length > 0 && errors.message}
-      </div>
-      <div
-        class="cf-turnstile"
-        data-sitekey={import.meta.env.TURNSTILE_SITEKEY}
-        data-callback="javascriptCallback"
-        data-theme="dark"
-      >
       </div>
       <button class="btn" type="submit">Send</button>
     </form>
