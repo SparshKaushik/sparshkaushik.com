@@ -22,9 +22,19 @@ const { title } = Astro.props;
       rel="stylesheet"
     />
     <slot name="head" />
-    <script defer data-domain="sparshkaushik.com" src="https://plausible.touchtech.club/js/script.file-downloads.hash.outbound-links.js"></script>
-    <script>(window as any).plausible = (window as any).plausible || function() { ((window as any).plausible.q = (window as any).plausible.q || []).push(arguments) }</script>
-
+    <script
+      defer
+      data-domain="sparshkaushik.com"
+      src="https://plsbl.touchtech.club/js/script.file-downloads.hash.outbound-links.js"
+    ></script>
+    <script>
+      (window as any).plausible =
+        (window as any).plausible ||
+        function () {
+          ((window as any).plausible.q =
+            (window as any).plausible.q || []).push(arguments);
+        };
+    </script>
   </head>
   <body>
     <TopBar />
