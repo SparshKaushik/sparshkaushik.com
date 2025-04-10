@@ -15,6 +15,14 @@ let success = false;
 
 if (Astro.request.method === "POST") {
   try {
+    const headers = Astro.request.headers;
+    const origin = headers.get("origin");
+    const allowedDomain = "https://sparshkaushik.com";
+
+    if (!(origin && origin.startsWith(allowedDomain))) {
+      errors.general = "Invalid request origin.";
+      return;
+    }
     const data = await Astro.request.formData();
     const name = data.get("name");
     const email = data.get("email");
