@@ -1,6 +1,7 @@
 ---
-export const prerender = true
-import Icon from "astro-icon";
+export const prerender = true;
+// @ts-ignore
+import { Icon } from "astro-icon/components";
 import Layout from "../../layouts/Layout.astro";
 
 const technologies = [
@@ -29,6 +30,14 @@ const technologies = [
     icon: "logos:typescript-icon",
   },
   {
+    name: "Python",
+    icon: "logos:python",
+  },
+  {
+    name: "Golang",
+    icon: "logos:go",
+  },
+  {
     name: "React",
     icon: "logos:react",
   },
@@ -49,16 +58,20 @@ const technologies = [
     icon: "logos:astro",
   },
   {
+    name: "Shadcn UI",
+    icon: "simple-icons:shadcnui",
+  },
+  {
     name: "NodeJS",
     icon: "logos:nodejs-icon",
   },
   {
-    name: "Golang",
-    icon: "logos:go",
+    name: "Bun",
+    icon: "vscode-icons:file-type-bun",
   },
   {
-    name: "Python",
-    icon: "logos:python",
+    name: "ElysiaJS",
+    icon: "elysia",
   },
   {
     name: "Flask",
@@ -75,6 +88,10 @@ const technologies = [
   {
     name: "Prisma",
     icon: "logos:prisma",
+  },
+  {
+    name: "Drizzle ORM",
+    icon: "material-icon-theme:drizzle",
   },
   {
     name: "MySQL",
@@ -152,33 +169,87 @@ const technologies = [
         </p>
         <div class="heading">Experience</div>
         <div class="exp">
-          <span class="lead">Nov 2022 - Present</span>
-          <span class="title">Full Stack Developer</span>
-          <span class="comp">VIPS-TC [ERP]</span>
-          <p>
-            In my role as a member of a five-person team developing our
-            college's ERP system, I focused on a web application with four
-            modules. I contributed to the Event Hall Booking and Management,
-            Employee Leave Management and Attendance, Student Attendance and
-            LMS, and Management Dashboard modules. We aimed to streamline event
-            reservations, automate staff leave and attendance, enhance student
-            attendance tracking and LMS, and provide administrators with a
-            centralized management dashboard. Additionally, I actively
-            participated in creating a mobile app for students, optimizing their
-            access to the LMS. This project sharpened my technical skills and
-            highlighted the importance of teamwork in delivering a precise and
-            efficient ERP solution for our college.
-          </p>
+          <span class="lead">Jan 2025 – Current</span>
+          <span class="title">Software Engineer (Intern)</span>
+          <span class="comp">Sortin (Hybrid) Gurugram, Haryana, India</span>
+          <ul>
+            <li>
+              Engineered the frontend, integrated APIs, and optimized AI model
+              prompts for newsa.sortin.in, enabling the platform to collate
+              results from diverse sources via natural language user queries.
+            </li>
+            <li>
+              Technologies: Typescript, NextJS, Tailwind CSS, React Query,
+              Supabase, Zustand.
+            </li>
+          </ul>
         </div>
         <div class="exp">
-          <span class="lead">Aug 2023</span>
-          <span class="title">IT Admit Intern</span>
-          <span class="comp">Larsen & Toubro</span>
-          <p>
-            During this internship, I gained hands-on experience in Identity and
-            Access Management (IAM), while also immersing myself in a dynamic
-            workplace culture that emphasized collaboration.
-          </p>
+          <span class="lead">Jul 2024 – Aug 2024</span>
+          <span class="title">Software Engineer (Intern)</span>
+          <span class="comp"
+            >Nightjar Technologies (Hybrid) Gurugram, Haryana, India</span
+          >
+          <ul>
+            <li>
+              Developed and implemented a responsive web application and mobile
+              app for Trailguard AI, featuring sections like analytics
+              dashboards, real-time camera feed, battery monitoring, and
+              notification management.
+            </li>
+            <li>
+              Integrated complex API functionalities to ensure seamless
+              communication between the Frontend and Backend, enhancing the
+              app's performance and user experience.
+            </li>
+            <li>
+              Technologies: Typescript, NextJS, Expo, React Native, Tailwind
+              CSS, Axios, REST API.
+            </li>
+          </ul>
+        </div>
+        <div class="exp">
+          <span class="lead">Nov 2022 – Dec 2024</span>
+          <span class="title">Full Stack Engineer - erp.vips.edu</span>
+          <span class="comp"
+            >Vivekananda Institute of Professional Studies Delhi, India</span
+          >
+          <ul>
+            <li>
+              Developed and deployed "Manthan," an in-house ERP system for
+              VIPS-TC College, supporting over 8,000 users with modules for
+              event management, faculty attendance, and an LMS for student
+              activities.
+            </li>
+            <li>
+              Integrated biometric hardware for accurate faculty attendance
+              tracking, ensuring precise and efficient record-keeping.
+            </li>
+            <li>
+              Provided multi-platform access through a web app, Android app, and
+              an admin dashboard, enhancing user accessibility and operational
+              efficiency.
+            </li>
+            <li>
+              Technologies: React, Typescript, SCSS, NextJS, React Native,
+              Firebase.
+            </li>
+          </ul>
+        </div>
+        <div class="exp">
+          <span class="lead">Jul 2023 – Nov 2023</span>
+          <span class="title">Frontend Engineer</span>
+          <span class="comp">Freelance Remote</span>
+          <ul>
+            <li>
+              Developed and customized a responsive SvelteKit analytics
+              dashboard with interactive graphs, tailored to client needs for
+              optimized data visualization and decision-making.
+            </li>
+            <li>
+              Technologies: Typescript, SvelteKit, Tailwind CSS, REST API.
+            </li>
+          </ul>
         </div>
         <div class="heading">Education</div>
         <div class="exp">

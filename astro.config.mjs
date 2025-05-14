@@ -1,13 +1,14 @@
-import { defineConfig, squooshImageService } from "astro/config";
+import { defineConfig, passthroughImageService } from "astro/config";
 import mdx from "@astrojs/mdx";
 import vercel from "@astrojs/vercel/serverless";
+import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "hybrid",
-  integrations: [mdx()],
+  output: "server",
+  integrations: [mdx(), icon()],
   adapter: vercel(),
   image: {
-    service: squooshImageService(),
+    service: passthroughImageService(),
   }
 });
