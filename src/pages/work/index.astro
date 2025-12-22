@@ -11,6 +11,7 @@ import ExpenseCoverImage from "../../assets/expense/cover.png";
 import TravelCoverImage from "../../assets/travel/cover.png";
 import NightJarCoverImage from "../../assets/nightjar/cover.png";
 import SortinNewsaCoverImage from "../../assets/sortin/newsa.png";
+import NewsaCoverImage from "../../assets/newsa/cover.webp";
 
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
@@ -112,6 +113,18 @@ const projects: {
   appLink?: string;
 }[] = [
   {
+    image: NewsaCoverImage,
+    stackIcons: [
+      stacks.nextjs,
+      stacks.react,
+      stacks.typescript,
+      stacks.tailwindcss,
+    ],
+    lead: "Full Time",
+    title: "NewSa.in",
+    appLink: "https://newsa.in/",
+  },
+  {
     image: SortinNewsaCoverImage,
     stackIcons: [
       stacks.nextjs,
@@ -127,21 +140,21 @@ const projects: {
     appLink: "https://newsa.sortin.in/",
     // link: "/work/details/travel",
   },
-  {
-    image: TravelCoverImage,
-    stackIcons: [
-      stacks.nextjs,
-      stacks.react,
-      stacks.typescript,
-      stacks.tailwindcss,
-      stacks.prisma,
-      stacks.postgresql,
-    ],
-    lead: "Freelance",
-    title: "Travel Planner",
-    appLink: "https://www.traveltoindia.co.in/",
-    // link: "/work/details/travel",
-  },
+  // {
+  //   image: TravelCoverImage,
+  //   stackIcons: [
+  //     stacks.nextjs,
+  //     stacks.react,
+  //     stacks.typescript,
+  //     stacks.tailwindcss,
+  //     stacks.prisma,
+  //     stacks.postgresql,
+  //   ],
+  //   lead: "Freelance",
+  //   title: "Travel Planner",
+  //   appLink: "https://www.traveltoindia.co.in/",
+  //   // link: "/work/details/travel",
+  // },
   {
     image: NightJarCoverImage,
     stackIcons: [

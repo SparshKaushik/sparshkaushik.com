@@ -6,7 +6,15 @@ import icon from "astro-icon";
 // https://astro.build/config
 export default defineConfig({
   output: "server",
-  integrations: [mdx(), icon()],
+  prefetch: {
+    defaultStrategy: "viewport"
+  },
+  integrations: [
+    mdx({
+      optimize: true,
+    }),
+    icon()
+  ],
   adapter: vercel(),
   image: {
     service: passthroughImageService(),
