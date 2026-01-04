@@ -1,0 +1,50 @@
+---
+interface Props {
+	href: string;
+	class?: string;
+}
+
+const { href, class: className = "" } = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={[
+    'info-box',
+    'p-4 sm:p-6 rounded-full flex items-center justify-center transition-all duration-200',
+    'text-text hover:text-bg active:text-bg hover:bg-text active:bg-text',
+    'group',
+    className,
+  ]}
+>
+  <slot />
+</a>
+
+<style>
+  .info-box {
+    position: relative;
+  }
+  .info-box::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    border-radius: 9999px;
+    border: 1px solid currentColor;
+    opacity: 0.1;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+  }
+  .info-box::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -20;
+    border-radius: 9999px;
+    margin: -1px;
+    opacity: 0.5;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.01));
+  }
+</style>

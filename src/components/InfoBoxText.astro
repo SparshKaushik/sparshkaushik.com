@@ -1,0 +1,14 @@
+---
+interface Props {
+	lead: string;
+	title: string;
+	titleClass?: string;
+}
+
+const { lead, title, titleClass = "" } = Astro.props;
+---
+
+<div class="w-full flex flex-col gap-2">
+  <div class="uppercase text-base leading-4 font-bold">{lead}</div>
+  <div class:list={['uppercase text-[2rem] leading-8 font-bold', titleClass]}>{title}</div>
+</div>

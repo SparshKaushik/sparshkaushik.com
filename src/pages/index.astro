@@ -1,307 +1,71 @@
 ---
-import Linkedin from "../components/icons/Linkedin.astro";
+import ArrowLink from "../components/ArrowLink.astro";
+import InfoBox from "../components/InfoBox.astro";
+import InfoBoxText from "../components/InfoBoxText.astro";
 import Github from "../components/icons/Github.astro";
-import Right from "../components/icons/Right.astro";
+import Linkedin from "../components/icons/Linkedin.astro";
+import SocialButton from "../components/SocialButton.astro";
 import Layout from "../layouts/Layout.astro";
-export const prerender = true;
 ---
 
 <Layout title="Sparsh Kaushik">
-  <main>
-    <div class="do-box">
-      <div class="info-box about-me">
-        <img src="/illustration.webp" alt="Sparsh Kaushik" />
-        <div class="about">
-          <div class="title">A Full Stack Developer</div>
-          <div class="name active">Sparsh Kaushik</div>
+  <main class="w-full flex flex-col items-center justify-center gap-6">
+    <div class="w-full grid grid-cols-[2fr_1fr] gap-4 max-[750px]:grid-cols-1">
+      <InfoBox class="flex items-center gap-8 max-md:gap-4">
+        <img src="/illustration.webp" alt="Sparsh Kaushik" class="w-64 max-md:w-32" />
+        <div class="flex flex-col gap-4 max-md:gap-2">
+          <div class="uppercase text-base leading-4 font-bold">A Full Stack Developer</div>
+          <div class="uppercase text-[2rem] leading-8 font-bold text-white!">Sparsh Kaushik</div>
           <div class="description">I do wizaradry specialising in web.</div>
-          <a href="/about" class="arrow">
-            <Right class="svg" />
-          </a>
+          <ArrowLink href="/about" />
         </div>
-      </div>
-      <div class="info-box projects">
-        <img src="/workillus.svg" alt="Sparsh Kaushik" />
-        <div class="bottom">
-          <div class="text">
-            <div class="lead">Showcase</div>
-            <div class="title active">Projects</div>
-          </div>
-          <a href="/work" class="arrow free">
-            <Right class="svg" />
-          </a>
+      </InfoBox>
+      <InfoBox class="flex-col justify-between">
+        <img src="/workillus.svg" alt="Sparsh Kaushik" class="h-40" />
+        <div class="w-full flex items-center justify-between">
+          <InfoBoxText lead="Showcase" title="Projects" titleClass="text-white!" />
+          <ArrowLink href="/work" variant="free" />
         </div>
-      </div>
+      </InfoBox>
     </div>
-    <div class="teen-box">
-      <div class="info-box stats">
-        <div class="info-box stat">
-          <div class="value active">3</div>
-          <div class="title">
+    <div class="w-full grid xl:grid-cols-[1fr_1fr_2fr] gap-4 md:grid-cols-[2fr_1fr] max-[750px]:grid-cols-1">
+      <InfoBox class="flex items-center justify-evenly gap-4">
+        <InfoBox class="flex-col items-center justify-center gap-4 p-12 max-lg:p-8">
+          <div class="uppercase text-[2rem] leading-8 font-bold text-center text-white!">3</div>
+          <div class="uppercase text-base leading-4 font-bold text-center">
             Cool<br />
              Internships
           </div>
+        </InfoBox>
+        <InfoBox class="flex-col items-center justify-center gap-4 p-12 max-lg:p-8">
+          <div class="uppercase text-[2rem] leading-8 font-bold text-center text-white!">2</div>
+          <div class="uppercase text-base leading-4 font-bold text-center">Freelance <br />Projects</div>
+        </InfoBox>
+      </InfoBox>
+      <InfoBox class="flex-col justify-around gap-4">
+        <div class="flex items-center justify-between gap-4 max-md:gap-8">
+          <SocialButton href="https://www.linkedin.com/in/sparshkaushik/">
+            <Linkedin class="svg stroke-text group-hover:stroke-bg" />
+          </SocialButton>
+          <SocialButton href="https://www.github.com/sparshkaushik/">
+            <Github class="svg fill-text group-hover:fill-bg" />
+          </SocialButton>
         </div>
-        <div class="info-box stat">
-          <div class="value active">2</div>
-          <div class="title">Freelance <br />Projects</div>
+        <div class="w-full flex items-center justify-between">
+          <InfoBoxText lead="Stay With Me" title="Profiles" titleClass="text-white!" />
+          <ArrowLink href="/contact" variant="free" />
         </div>
-      </div>
-      <div class="info-box social">
-        <div class="profiles">
-          <a
-            class="linkedin info-box profile"
-            href="https://www.linkedin.com/in/sparshkaushik/"
-          >
-            <Linkedin class="svg" />
-          </a>
-          <a
-            class="github info-box profile"
-            href="https://www.github.com/sparshkaushik/"
-          >
-            <Github class="svg" />
-          </a>
-        </div>
-        <div class="bottom">
-          <div class="text">
-            <div class="lead">Stay With Me</div>
-            <div class="title active">Profiles</div>
-          </div>
-          <a href="/contact" class="arrow free">
-            <Right class="svg" />
-          </a>
-        </div>
-      </div>
-      <div class="info-box contact">
-        <div class="bg">
-          <img src="/bg.svg" />
+      </InfoBox>
+      <InfoBox class="relative flex-col justify-around gap-4 z-10">
+        <div class="absolute inset-0 -z-10">
+          <img src="/bg.svg" class="w-full h-full object-cover object-center rounded-[30px] opacity-80" />
         </div>
         <div class="hehe"></div>
-        <div class="bottom">
-          <div class="text">
-            <div class="lead">Let's Get In</div>
-            <div class="title active">Touch</div>
-          </div>
-          <a href="/contact" class="arrow top">
-            <Right class="svg" />
-          </a>
+        <div class="w-full flex items-center justify-between">
+          <InfoBoxText lead="Let's Get In" title="Touch" titleClass="text-white!" />
+          <ArrowLink href="/contact" variant="top" />
         </div>
-      </div>
+      </InfoBox>
     </div>
   </main>
 </Layout>
-
-<style lang="scss">
-  main {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    gap: 1.5rem;
-
-    .do-box {
-      width: 100%;
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 1rem;
-
-      @media screen and (max-width: 480px) {
-        grid-template-columns: 1fr;
-      }
-
-      .about-me {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-
-        @media screen and (max-width: 768px) {
-          gap: 1rem;
-        }
-
-        img {
-          width: 8rem;
-          padding: 0 2rem;
-
-          @media screen and (max-width: 768px) {
-            width: 6rem;
-            padding: 0;
-          }
-        }
-
-        .about {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-
-          @media screen and (max-width: 768px) {
-            gap: 0.5rem;
-          }
-
-          .title {
-            text-transform: uppercase;
-            font-size: 1rem;
-            line-height: 1rem;
-            font-weight: 700;
-          }
-
-          .name {
-            text-transform: uppercase;
-            font-size: 2rem;
-            line-height: 2rem;
-            font-weight: 700;
-          }
-        }
-      }
-
-      .projects {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        img {
-          height: 10rem;
-        }
-      }
-    }
-
-    .teen-box {
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr 2fr;
-      gap: 1rem;
-
-      @media screen and (max-width: 768px) {
-        grid-template-columns: 2fr 1fr;
-      }
-
-      @media screen and (max-width: 480px) {
-        grid-template-columns: 1fr;
-      }
-
-      .stats {
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-        gap: 1rem;
-
-        .stat {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 1rem;
-
-          padding: 3rem;
-
-          @media screen and (max-width: 1024px) {
-            padding: 2rem;
-          }
-
-          .title {
-            text-transform: uppercase;
-            font-size: 1rem;
-            line-height: 1rem;
-            font-weight: 700;
-
-            text-align: center;
-          }
-
-          .value {
-            text-transform: uppercase;
-            font-size: 2rem;
-            line-height: 2rem;
-            font-weight: 700;
-
-            text-align: center;
-          }
-        }
-      }
-
-      .social {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        gap: 1rem;
-
-        .profiles {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 1rem;
-
-          @media screen and (max-width: 768px) {
-            gap: 2rem;
-          }
-        }
-
-        .profile {
-          padding: 1rem;
-          border-radius: 50%;
-
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          transition: all 0.2s ease-in-out;
-
-          &::before,
-          &::after {
-            border-radius: 50%;
-          }
-
-          &.linkedin .svg {
-            stroke: var(--text-color);
-          }
-
-          &.github .svg {
-            fill: var(--text-color);
-          }
-
-          &:hover,
-          &:active {
-            background: var(--text-color);
-
-            &.linkedin .svg {
-              stroke: var(--bg-color);
-            }
-            &.github .svg {
-              fill: var(--bg-color);
-            }
-          }
-        }
-      }
-
-      .contact {
-        position: relative;
-
-        flex-direction: column;
-        justify-content: space-around;
-        gap: 1rem;
-
-        z-index: 1;
-
-        .bg {
-          position: absolute;
-          left: 0;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          z-index: -1;
-
-          img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-
-            border-radius: 30px;
-
-            opacity: 0.8;
-          }
-        }
-      }
-    }
-  }
-</style>

@@ -1,0 +1,44 @@
+---
+import LinkIcon from "./icons/Link.astro";
+import Right from "./icons/Right.astro";
+
+interface Props {
+	href: string;
+	variant?: "default" | "free" | "top";
+	icon?: "arrow" | "link";
+	small?: boolean;
+	class?: string;
+}
+
+const {
+	href,
+	variant = "default",
+	icon = "arrow",
+	small = false,
+	class: className = "",
+} = Astro.props;
+
+const positionClasses = {
+	default: "absolute right-8 bottom-8 max-md:right-4 max-md:bottom-4",
+	free: "static",
+	top: "absolute right-8 top-8 bottom-auto max-md:right-4",
+};
+
+const iconSize = small ? "w-6 h-6" : "w-8 h-8";
+---
+
+<a
+  href={href}
+  class:list={[
+    'arrow',
+    'transition-all duration-100 p-0 px-2 flex items-center gap-2',
+    positionClasses[variant],
+    className,
+  ]}
+>
+  {icon === 'arrow' ? (
+    <Right class:list={['stroke-secondary-text hover:stroke-text', iconSize]} />
+  ) : (
+    <LinkIcon class:list={['stroke-secondary-text hover:stroke-text', iconSize]} />
+  )}
+</a>

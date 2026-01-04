@@ -1,0 +1,48 @@
+---
+const {
+	as: Tag = "div",
+	href,
+	class: className = "",
+	rounded = "default",
+	...rest
+} = Astro.props as {
+	as?: "div" | "a" | "form";
+	href?: string;
+	class?: string;
+	rounded?: "default" | "full";
+	[key: string]: unknown;
+};
+
+const beforeRoundedClass =
+	rounded === "full" ? "before:rounded-full" : "before:rounded-[30px]";
+const afterRoundedClass =
+	rounded === "full" ? "after:rounded-full" : "after:rounded-[30px]";
+---
+
+<Tag
+  href={Tag === 'a' ? href : undefined}
+  class:list={[
+    'info-box',
+    'relative flex items-center p-6 sm:p-8',
+    // ::before layer (background gradient)
+    'before:content-[""] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:-z-10 before:border before:border-solid before:border-current before:opacity-10',
+    beforeRoundedClass,
+    // ::after layer (border gradient)
+    'after:content-[""] after:absolute after:inset-0 after:-z-20 after:-m-px after:opacity-50',
+    afterRoundedClass,
+    className,
+  ]}
+  style={`--before-bg: linear-gradient(120deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05)); --after-bg: linear-gradient(120deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.01));`}
+  {...rest}
+>
+  <slot />
+</Tag>
+
+<style>
+  .info-box::before {
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+  }
+  .info-box::after {
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.01));
+  }
+</style>
