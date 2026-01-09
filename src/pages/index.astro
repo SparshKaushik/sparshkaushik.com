@@ -10,12 +10,12 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Sparsh Kaushik">
   <main class="w-full flex flex-col items-center justify-center gap-6">
-    <div class="w-full grid grid-cols-[2fr_1fr] gap-4 max-[750px]:grid-cols-1">
-      <InfoBox class="flex items-center gap-8 max-md:gap-4">
-        <img src="/illustration.webp" alt="Sparsh Kaushik" class="w-64 max-md:w-32" />
-        <div class="flex flex-col gap-4 max-md:gap-2">
+    <div class="w-full grid grid-cols-1 min-[750px]:grid-cols-[2fr_1fr] gap-4">
+      <InfoBox class="flex items-center gap-4 md:gap-8">
+        <img src="/illustration.webp" alt="Sparsh Kaushik" class="w-32 mx-2 md:mx-8" />
+        <div class="flex flex-col gap-2 md:gap-4">
           <div class="uppercase text-base leading-4 font-bold">A Full Stack Developer</div>
-          <div class="uppercase text-[2rem] leading-8 font-bold text-white!">Sparsh Kaushik</div>
+          <div class="uppercase text-[2rem] leading-8 font-bold text-text!">Sparsh Kaushik</div>
           <div class="description">I do wizaradry specialising in web.</div>
           <ArrowLink href="/about" />
         </div>
@@ -23,28 +23,28 @@ import Layout from "../layouts/Layout.astro";
       <InfoBox class="flex-col justify-between">
         <img src="/workillus.svg" alt="Sparsh Kaushik" class="h-40" />
         <div class="w-full flex items-center justify-between">
-          <InfoBoxText lead="Showcase" title="Projects" titleClass="text-white!" />
+          <InfoBoxText lead="Showcase" title="Projects" titleClass="text-text!" />
           <ArrowLink href="/work" variant="free" />
         </div>
       </InfoBox>
     </div>
-    <div class="w-full grid xl:grid-cols-[1fr_1fr_2fr] gap-4 md:grid-cols-[2fr_1fr] max-[750px]:grid-cols-1">
+    <div class="w-full grid grid-cols-1 min-[750px]:grid-cols-[2fr_1fr] md:grid-cols-[2fr_1fr] xl:grid-cols-[1fr_1fr_4fr] gap-4">
       <InfoBox class="flex items-center justify-evenly gap-4">
-        <InfoBox class="flex-col items-center justify-center gap-4 p-12 max-lg:p-8">
-          <div class="uppercase text-[2rem] leading-8 font-bold text-center text-white!">3</div>
-          <div class="uppercase text-base leading-4 font-bold text-center">
+        <InfoBox class="flex-col items-center justify-center gap-4">
+          <div class="uppercase text-[2rem] leading-8 font-bold text-center text-text!">3</div>
+          <div class="uppercase text-sm leading-4 font-bold text-center">
             Cool<br />
              Internships
           </div>
         </InfoBox>
-        <InfoBox class="flex-col items-center justify-center gap-4 p-12 max-lg:p-8">
-          <div class="uppercase text-[2rem] leading-8 font-bold text-center text-white!">2</div>
-          <div class="uppercase text-base leading-4 font-bold text-center">Freelance <br />Projects</div>
+        <InfoBox class="flex-col items-center justify-center gap-4">
+          <div class="uppercase text-[2rem] leading-8 font-bold text-center text-text!">2</div>
+          <div class="uppercase text-sm leading-4 font-bold text-center">Freelance <br />Projects</div>
         </InfoBox>
       </InfoBox>
-      <InfoBox class="flex-col justify-around gap-4">
-        <div class="flex items-center justify-between gap-4 max-md:gap-8">
-          <SocialButton href="https://www.linkedin.com/in/sparshkaushik/">
+      <InfoBox class="flex-col justify-around gap-4 pt-5!">
+        <div class="flex items-center justify-between gap-4 md:gap-6">
+          <SocialButton href="https://www.linkedin.com/in/sparshkaushik/" class="p-0">
             <Linkedin class="svg stroke-text group-hover:stroke-bg" />
           </SocialButton>
           <SocialButton href="https://www.github.com/sparshkaushik/">
@@ -52,17 +52,17 @@ import Layout from "../layouts/Layout.astro";
           </SocialButton>
         </div>
         <div class="w-full flex items-center justify-between">
-          <InfoBoxText lead="Stay With Me" title="Profiles" titleClass="text-white!" />
+          <InfoBoxText lead="Stay With Me" title="Profiles" titleClass="text-text!" />
           <ArrowLink href="/contact" variant="free" />
         </div>
       </InfoBox>
-      <InfoBox class="relative flex-col justify-around gap-4 z-10">
+      <InfoBox class="relative flex-col justify-between gap-4 z-10">
         <div class="absolute inset-0 -z-10">
           <img src="/bg.svg" class="w-full h-full object-cover object-center rounded-[30px] opacity-80" />
         </div>
         <div class="hehe"></div>
         <div class="w-full flex items-center justify-between">
-          <InfoBoxText lead="Let's Get In" title="Touch" titleClass="text-white!" />
+          <InfoBoxText lead="Let's Get In" title="Touch" titleClass="text-text!" />
           <ArrowLink href="/contact" variant="top" />
         </div>
       </InfoBox>

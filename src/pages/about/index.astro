@@ -1,172 +1,171 @@
 ---
-export const prerender = true;
-// @ts-ignore
 import { Icon } from "astro-icon/components";
+import InfoBox from "../../components/InfoBox.astro";
 import Layout from "../../layouts/Layout.astro";
 
 const technologies = [
-  {
-    name: "HTML",
-    icon: "logos:html-5",
-  },
-  {
-    name: "CSS",
-    icon: "logos:css-3",
-  },
-  {
-    name: "SASS",
-    icon: "logos:sass",
-  },
-  {
-    name: "Tailwind",
-    icon: "logos:tailwindcss-icon",
-  },
-  {
-    name: "JavaScript",
-    icon: "logos:javascript",
-  },
-  {
-    name: "TypeScript",
-    icon: "logos:typescript-icon",
-  },
-  {
-    name: "Python",
-    icon: "logos:python",
-  },
-  {
-    name: "Golang",
-    icon: "logos:go",
-  },
-  {
-    name: "React",
-    icon: "logos:react",
-  },
-  {
-    name: "React Native",
-    icon: "logos:react",
-  },
-  {
-    name: "Expo",
-    icon: "vscode-icons:file-type-light-expo",
-  },
-  {
-    name: "SvelteKit",
-    icon: "logos:svelte-icon",
-  },
-  {
-    name: "Astro",
-    icon: "logos:astro",
-  },
-  {
-    name: "Shadcn UI",
-    icon: "simple-icons:shadcnui",
-  },
-  {
-    name: "NodeJS",
-    icon: "logos:nodejs-icon",
-  },
-  {
-    name: "Bun",
-    icon: "vscode-icons:file-type-bun",
-  },
-  {
-    name: "ElysiaJS",
-    icon: "elysia",
-  },
-  {
-    name: "Flask",
-    icon: "flask-light",
-  },
-  {
-    name: "Firebase",
-    icon: "logos:firebase",
-  },
-  {
-    name: "Supabase",
-    icon: "supabase",
-  },
-  {
-    name: "Legend State",
-    icon: "legendstate",
-  },
-  {
-    name: "Prisma",
-    icon: "logos:prisma",
-  },
-  {
-    name: "Drizzle ORM",
-    icon: "material-icon-theme:drizzle",
-  },
-  {
-    name: "MySQL",
-    icon: "logos:mysql",
-  },
-  {
-    name: "PostgreSQL",
-    icon: "logos:postgresql",
-  },
-  {
-    name: "SQLite",
-    icon: "logos:sqlite",
-  },
-  {
-    name: "MongoDB",
-    icon: "logos:mongodb",
-  },
-  {
-    name: "Docker",
-    icon: "logos:docker-icon",
-  },
-  {
-    name: "Linux",
-    icon: "logos:linux-tux",
-  },
-  {
-    name: "Git",
-    icon: "logos:git-icon",
-  },
-  {
-    name: "GitHub",
-    icon: "mdi:github",
-  },
-  {
-    name: "Figma",
-    icon: "logos:figma",
-  },
+	{
+		name: "HTML",
+		icon: "logos:html-5",
+	},
+	{
+		name: "CSS",
+		icon: "logos:css-3",
+	},
+	{
+		name: "SASS",
+		icon: "logos:sass",
+	},
+	{
+		name: "Tailwind",
+		icon: "logos:tailwindcss-icon",
+	},
+	{
+		name: "JavaScript",
+		icon: "logos:javascript",
+	},
+	{
+		name: "TypeScript",
+		icon: "logos:typescript-icon",
+	},
+	{
+		name: "Python",
+		icon: "logos:python",
+	},
+	{
+		name: "Golang",
+		icon: "logos:go",
+	},
+	{
+		name: "React",
+		icon: "logos:react",
+	},
+	{
+		name: "React Native",
+		icon: "logos:react",
+	},
+	{
+		name: "Expo",
+		icon: "vscode-icons:file-type-light-expo",
+	},
+	{
+		name: "SvelteKit",
+		icon: "logos:svelte-icon",
+	},
+	{
+		name: "Astro",
+		icon: "logos:astro",
+	},
+	{
+		name: "Shadcn UI",
+		icon: "simple-icons:shadcnui",
+	},
+	{
+		name: "NodeJS",
+		icon: "logos:nodejs-icon",
+	},
+	{
+		name: "Bun",
+		icon: "vscode-icons:file-type-bun",
+	},
+	{
+		name: "ElysiaJS",
+		icon: "elysia",
+	},
+	{
+		name: "Flask",
+		icon: "flask-light",
+	},
+	{
+		name: "Firebase",
+		icon: "logos:firebase",
+	},
+	{
+		name: "Supabase",
+		icon: "supabase",
+	},
+	{
+		name: "Legend State",
+		icon: "legendstate",
+	},
+	{
+		name: "Prisma",
+		icon: "logos:prisma",
+	},
+	{
+		name: "Drizzle ORM",
+		icon: "material-icon-theme:drizzle",
+	},
+	{
+		name: "MySQL",
+		icon: "logos:mysql",
+	},
+	{
+		name: "PostgreSQL",
+		icon: "logos:postgresql",
+	},
+	{
+		name: "SQLite",
+		icon: "logos:sqlite",
+	},
+	{
+		name: "MongoDB",
+		icon: "logos:mongodb",
+	},
+	{
+		name: "Docker",
+		icon: "logos:docker-icon",
+	},
+	{
+		name: "Linux",
+		icon: "logos:linux-tux",
+	},
+	{
+		name: "Git",
+		icon: "logos:git-icon",
+	},
+	{
+		name: "GitHub",
+		icon: "mdi:github",
+	},
+	{
+		name: "Figma",
+		icon: "logos:figma",
+	},
 ];
 ---
 
 <Layout title="About">
-  <main>
-    <div class="content">
-      <div class="info-box profile">
-        <img src="/illustration.webp" alt="Profile" />
+  <main class="w-full flex flex-col items-center justify-center gap-6">
+    <div class="w-full grid grid-cols-1 gap-8 md:grid-cols-[1fr_2fr] md:gap-20">
+      <InfoBox class="relative top-0 h-fit flex-col items-center gap-8 md:sticky md:top-[10%]">
+        <img src="/illustration.webp" alt="Profile" class="max-h-[30vh]" />
         <div>
-          <div class="name active">Sparsh Kaushik</div>
-          <div class="lead">Full Stack Developer</div>
+          <div class="text-2xl font-semibold text-text!">Sparsh Kaushik</div>
+          <div class="text-xl font-medium">Full Stack Developer</div>
         </div>
-        <div class="socials"></div>
-      </div>
+        <div class="flex items-center gap-4"></div>
+      </InfoBox>
       <div class="resume">
-        <div class="heading">About Me</div>
-        <p>
+        <div class="text-2xl font-medium text-text mt-8 mb-4 first:mt-0">About Me</div>
+        <p class="text-base font-normal">
           I'm a Full Stack Developer who builds web and mobile applications
           that scale. Currently at Newsa, I work across the stack with
           TypeScript, Next.js, React Native, and Supabase to ship products used
           by real people every day.
         </p>
-        <p>
+        <p class="text-base font-normal mt-4">
           My journey includes building Manthan, an ERP system serving 8,000+
           users at VIPS-TC, developing AI-powered platforms at Sortin, and
           creating IoT dashboards for wildlife conservation at Nightjar. I'm
           comfortable with React, Svelte, Node.js and I handle everything from database design to deployment. I love Bun BTW.
         </p>
-        <div class="heading">Experience</div>
-        <div class="exp">
-          <span class="lead">Jul 2025 – Current</span>
-          <span class="title">Software Engineer</span>
-          <span class="comp">Newsa (Hybrid) Gurugram, Haryana, India</span>
-          <ul>
+        <div class="text-2xl font-medium text-text mt-8 mb-4">Experience</div>
+        <div class="flex flex-col mt-4">
+          <span class="text-[1.1rem] font-medium">Jul 2025 – Current</span>
+          <span class="text-[1.15rem] font-medium text-accent">Software Engineer</span>
+          <span class="text-base font-normal">Newsa (Hybrid) Gurugram, Haryana, India</span>
+          <ul class="list-disc pl-12 mt-2">
             <li>
               Building newsa.in web and mobile applications, developing
               responsive user interfaces and cross-platform mobile experiences.
@@ -177,11 +176,11 @@ const technologies = [
             </li>
           </ul>
         </div>
-        <div class="exp">
-          <span class="lead">Jan 2025 – Jul 2025</span>
-          <span class="title">Software Engineer (Intern)</span>
-          <span class="comp">Sortin (Hybrid) Gurugram, Haryana, India</span>
-          <ul>
+        <div class="flex flex-col mt-4">
+          <span class="text-[1.1rem] font-medium">Jan 2025 – Jul 2025</span>
+          <span class="text-[1.15rem] font-medium text-accent">Software Engineer (Intern)</span>
+          <span class="text-base font-normal">Sortin (Hybrid) Gurugram, Haryana, India</span>
+          <ul class="list-disc pl-12 mt-2">
             <li>
               Engineered the frontend, integrated APIs, and optimized AI model
               prompts for newsa.sortin.in, enabling the platform to collate
@@ -193,13 +192,13 @@ const technologies = [
             </li>
           </ul>
         </div>
-        <div class="exp">
-          <span class="lead">Jul 2024 – Aug 2024</span>
-          <span class="title">Software Engineer (Intern)</span>
-          <span class="comp"
+        <div class="flex flex-col mt-4">
+          <span class="text-[1.1rem] font-medium">Jul 2024 – Aug 2024</span>
+          <span class="text-[1.15rem] font-medium text-accent">Software Engineer (Intern)</span>
+          <span class="text-base font-normal"
             >Nightjar Technologies (Hybrid) Gurugram, Haryana, India</span
           >
-          <ul>
+          <ul class="list-disc pl-12 mt-2">
             <li>
               Developed and implemented a responsive web application and mobile
               app for Trailguard AI, featuring sections like analytics
@@ -217,13 +216,13 @@ const technologies = [
             </li>
           </ul>
         </div>
-        <div class="exp">
-          <span class="lead">Nov 2022 – Dec 2024</span>
-          <span class="title">Full Stack Engineer - erp.vips.edu</span>
-          <span class="comp"
+        <div class="flex flex-col mt-4">
+          <span class="text-[1.1rem] font-medium">Nov 2022 – Dec 2024</span>
+          <span class="text-[1.15rem] font-medium text-accent">Full Stack Engineer - erp.vips.edu</span>
+          <span class="text-base font-normal"
             >Vivekananda Institute of Professional Studies Delhi, India</span
           >
-          <ul>
+          <ul class="list-disc pl-12 mt-2">
             <li>
               Developed and deployed "Manthan," an in-house ERP system for
               VIPS-TC College, supporting over 8,000 users with modules for
@@ -245,11 +244,11 @@ const technologies = [
             </li>
           </ul>
         </div>
-        <div class="exp">
-          <span class="lead">Jul 2023 – Nov 2023</span>
-          <span class="title">Frontend Engineer</span>
-          <span class="comp">Freelance Remote</span>
-          <ul>
+        <div class="flex flex-col mt-4">
+          <span class="text-[1.1rem] font-medium">Jul 2023 – Nov 2023</span>
+          <span class="text-[1.15rem] font-medium text-accent">Frontend Engineer</span>
+          <span class="text-base font-normal">Freelance Remote</span>
+          <ul class="list-disc pl-12 mt-2">
             <li>
               Developed and customized a responsive SvelteKit analytics
               dashboard with interactive graphs, tailored to client needs for
@@ -260,28 +259,28 @@ const technologies = [
             </li>
           </ul>
         </div>
-        <div class="heading">Education</div>
-        <div class="exp">
-          <span class="lead">2021 - 2025</span>
-          <span class="title">B.Tech. AIML</span>
-          <span class="comp">VIPS-TC</span>
-          <p>
+        <div class="text-2xl font-medium text-text mt-8 mb-4">Education</div>
+        <div class="flex flex-col mt-4">
+          <span class="text-[1.1rem] font-medium">2021 - 2025</span>
+          <span class="text-[1.15rem] font-medium text-accent">B.Tech. AIML</span>
+          <span class="text-base font-normal">VIPS-TC</span>
+          <p class="text-text mt-2">
             Graduated with a Bachelor of Technology in Computer Science and
             Engineering from VIPS-TC, where I was a member of the C.O.D.E.
             technical society and the college's ERP Team.
           </p>
         </div>
-        <div class="exp">
-          <span class="lead">2021</span>
-          <span class="title">SECONDARY SCHOOL</span>
-          <span class="comp">Delhi International Public School</span>
+        <div class="flex flex-col mt-4">
+          <span class="text-[1.1rem] font-medium">2021</span>
+          <span class="text-[1.15rem] font-medium text-accent">SECONDARY SCHOOL</span>
+          <span class="text-base font-normal">Delhi International Public School</span>
         </div>
-        <div class="heading">Technologies</div>
-        <div class="tech">
+        <div class="text-2xl font-medium text-text mt-8 mb-4">Technologies</div>
+        <div class="grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] gap-4">
           {
             technologies.map((tech) => (
-              <div>
-                <Icon name={tech.icon} />
+              <div class="flex items-center gap-2">
+                <Icon name={tech.icon} class="w-8 h-8" />
                 {tech.name}
               </div>
             ))
@@ -290,131 +289,4 @@ const technologies = [
       </div>
     </div>
   </main>
-
-  <style lang="scss">
-    main {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      gap: 1.5rem;
-
-      .content {
-        width: 100%;
-
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        gap: 5rem;
-
-        @media screen and (max-width: 768px) {
-          grid-template-columns: 1fr;
-          gap: 2rem;
-        }
-
-        .profile {
-          position: sticky;
-          top: 10%;
-
-          height: fit-content;
-
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-
-          gap: 2rem;
-
-          @media screen and (max-width: 768px) {
-            position: relative;
-            top: 0;
-          }
-
-          img {
-            max-height: 30vh;
-          }
-
-          .name {
-            font-size: 1.5rem;
-            font-weight: 600;
-          }
-
-          .lead {
-            font-size: 1.25rem;
-            font-weight: 500;
-          }
-
-          .socials {
-            display: flex;
-            align-items: center;
-
-            gap: 1rem;
-          }
-        }
-
-        .resume {
-          .heading {
-            font-size: 1.5rem;
-            font-weight: 500;
-            color: var(--text-color);
-
-            &:not(:first-child) {
-              margin-top: 2rem;
-              margin-bottom: 1rem;
-            }
-          }
-
-          p {
-            font-size: 1rem;
-            font-weight: 400;
-          }
-
-          .exp {
-            display: flex;
-            flex-direction: column;
-
-            margin-top: 1rem;
-
-            .lead {
-              font-size: 1.1rem;
-              font-weight: 500;
-            }
-
-            .title {
-              font-size: 1.15rem;
-              font-weight: 500;
-              color: var(--accent-color);
-            }
-
-            .comp {
-              font-size: 1rem;
-              font-weight: 400;
-            }
-
-            p {
-              color: var(--text-color);
-            }
-          }
-
-          .tech {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 1rem;
-
-            > div {
-              display: flex;
-              align-items: center;
-
-              gap: 0.5rem;
-
-              > svg {
-                height: 32px;
-                width: 32px;
-              }
-            }
-          }
-        }
-      }
-    }
-  </style>
 </Layout>

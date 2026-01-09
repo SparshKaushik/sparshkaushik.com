@@ -1,57 +1,60 @@
 ---
 export const prerender = false;
-import Layout from "../../layouts/Layout.astro";
-// @ts-ignore
+
 import { Icon } from "astro-icon/components";
+import Button from "../../components/Button.astro";
+import InfoBox from "../../components/InfoBox.astro";
+import SocialButton from "../../components/SocialButton.astro";
+import Layout from "../../layouts/Layout.astro";
 
 const errors = {
-  name: "",
-  email: "",
-  subject: "",
-  message: "",
-  general: "",
+	name: "",
+	email: "",
+	subject: "",
+	message: "",
+	general: "",
 };
 
 let success = false;
 
 if (Astro.request.method === "POST") {
-  try {
-    const headers = Astro.request.headers;
-    const origin = headers.get("origin");
-    const allowedDomain = "https://sparshkaushik.com";
+	try {
+		const headers = Astro.request.headers;
+		const origin = headers.get("origin");
+		const allowedDomain = "https://sparshkaushik.com";
 
-    if (!(origin && origin.startsWith(allowedDomain))) {
-      errors.general = "Invalid request origin.";
-      return;
-    }
-    const data = await Astro.request.formData();
-    const name = data.get("name");
-    const email = data.get("email");
-    const subject = data.get("subject");
-    const message = data.get("message");
-    if (typeof name !== "string" || name.length < 3) {
-      errors.name = "Name must be at least 3 characters long";
-    }
-    if (
-      typeof email !== "string" ||
-      !email.match(
-        /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
-      )
-    ) {
-      errors.email = "Email must be valid";
-    }
-    if (typeof subject !== "string" || subject.length < 3) {
-      errors.subject = "Subject must be at least 3 characters long";
-    }
-    if (typeof message !== "string" || message.length < 10) {
-      errors.message = "Message must be at least 10 characters long";
-    }
-    if (!Object.values(errors).some((error) => error.length > 0)) {
-      await fetch(
-        `https://api.telegram.org/bot${import.meta.env.TOKEN}/sendMessage?` +
-          new URLSearchParams({
-            chat_id: "-649113731",
-            text: `New Contact Form Submission on \n\n
+		if (!(origin && origin.startsWith(allowedDomain))) {
+			errors.general = "Invalid request origin.";
+			return;
+		}
+		const data = await Astro.request.formData();
+		const name = data.get("name");
+		const email = data.get("email");
+		const subject = data.get("subject");
+		const message = data.get("message");
+		if (typeof name !== "string" || name.length < 3) {
+			errors.name = "Name must be at least 3 characters long";
+		}
+		if (
+			typeof email !== "string" ||
+			!email.match(
+				/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
+			)
+		) {
+			errors.email = "Email must be valid";
+		}
+		if (typeof subject !== "string" || subject.length < 3) {
+			errors.subject = "Subject must be at least 3 characters long";
+		}
+		if (typeof message !== "string" || message.length < 10) {
+			errors.message = "Message must be at least 10 characters long";
+		}
+		if (!Object.values(errors).some((error) => error.length > 0)) {
+			await fetch(
+				`https://api.telegram.org/bot${import.meta.env.TOKEN}/sendMessage?` +
+					new URLSearchParams({
+						chat_id: "-649113731",
+						text: `New Contact Form Submission on \n\n
 Hallo , \n
 Name: ${name} \n
 Email: ${email} \n
@@ -59,17 +62,21 @@ Subject: ${subject} \n
 Message: ${message} \n\n
 Client Address: ${Astro.clientAddress} \n
 Other Info: ${JSON.stringify(Astro.request)} \n`,
-          }).toString()
-      )
-        .then(() => (success = true))
-        .catch((error) => (errors.general = error));
-    }
-  } catch (error) {
-    if (error instanceof Error) {
-      errors.general = "Something went wrong. Please try again later.";
-      console.error(error);
-    }
-  }
+					}).toString(),
+			)
+				.then(() => {
+					success = true;
+				})
+				.catch((error) => {
+					errors.general = String(error);
+				});
+		}
+	} catch (error) {
+		if (error instanceof Error) {
+			errors.general = "Something went wrong. Please try again later.";
+			console.error(error);
+		}
+	}
 }
 ---
 
@@ -77,297 +84,96 @@ Other Info: ${JSON.stringify(Astro.request)} \n`,
   <script
     slot="head"
     src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
-  <main>
-    <div class="infos">
-      <div class="heading active">My Socials</div>
-      <div class="info social">
-        <a class="info-box" href="mailto:contact@sparshkaushik.com">
-          <Icon name="mdi:email" />
-        </a>
-        <div>
-          <span>Mail</span>
-          <span class="active">contact@sparshkaushik.com</span>
+  <main class="w-full grid grid-cols-1 px-4 gap-8 md:grid-cols-[2fr_3fr] md:px-0">
+    <div class="flex flex-col gap-4">
+      <div class="text-2xl font-semibold text-text tracking-[0.1rem]">My Socials</div>
+      <div class="flex items-center gap-4">
+        <SocialButton href="mailto:contact@sparshkaushik.com">
+          <Icon name="mdi:email" class="w-8 h-8" />
+        </SocialButton>
+        <div class="flex flex-col">
+          <span class="text-[1.15rem] font-medium">Mail</span>
+          <span class="text-[1.15rem] font-medium text-text!">contact@sparshkaushik.com</span>
         </div>
       </div>
-      <div class="info social">
-        <a class="info-box" href="https://linkedin.com/in/sparshkaushik">
-          <Icon name="mdi:linkedin" />
-        </a>
-        <div>
-          <span>LinkedIn</span>
-          <span class="active">Sparsh Kaushik</span>
+      <div class="flex items-center gap-4">
+        <SocialButton href="https://linkedin.com/in/sparshkaushik">
+          <Icon name="mdi:linkedin" class="w-8 h-8" />
+        </SocialButton>
+        <div class="flex flex-col">
+          <span class="text-[1.15rem] font-medium">LinkedIn</span>
+          <span class="text-[1.15rem] font-medium text-text!">Sparsh Kaushik</span>
         </div>
       </div>
-      <div class="info social">
-        <a class="info-box" href="https://github.com/SparshKaushik">
-          <Icon name="mdi:github" />
-        </a>
-        <div>
-          <span>Github</span>
-          <span class="active">@SparshKaushik</span>
+      <div class="flex items-center gap-4">
+        <SocialButton href="https://github.com/SparshKaushik">
+          <Icon name="mdi:github" class="w-8 h-8" />
+        </SocialButton>
+        <div class="flex flex-col">
+          <span class="text-[1.15rem] font-medium">Github</span>
+          <span class="text-[1.15rem] font-medium text-text!">@SparshKaushik</span>
         </div>
       </div>
-      <div class="info social">
-        <a class="info-box" href="https://t.me/sparshkaushik">
-          <Icon name="ic:outline-telegram" />
-        </a>
-        <div>
-          <span>Telegram</span>
-          <span class="active">@SparshKaushik</span>
+      <div class="flex items-center gap-4">
+        <SocialButton href="https://t.me/sparshkaushik">
+          <Icon name="ic:outline-telegram" class="w-8 h-8" />
+        </SocialButton>
+        <div class="flex flex-col">
+          <span class="text-[1.15rem] font-medium">Telegram</span>
+          <span class="text-[1.15rem] font-medium text-text!">@SparshKaushik</span>
         </div>
       </div>
-      <div class="info social">
-        <a class="info-box" href="https://twitter.com/donothavethis">
-          <Icon name="mdi:twitter" />
-        </a>
-        <div>
-          <span>Twitter</span>
-          <span class="active">@donothavethis</span>
+      <div class="flex items-center gap-4">
+        <SocialButton href="https://twitter.com/donothavethis">
+          <Icon name="mdi:twitter" class="w-8 h-8" />
+        </SocialButton>
+        <div class="flex flex-col">
+          <span class="text-[1.15rem] font-medium">Twitter</span>
+          <span class="text-[1.15rem] font-medium text-text!">@donothavethis</span>
         </div>
       </div>
     </div>
-    <form class="info-box" method="post">
-      <div class="string"></div>
-      <div class="string2"></div>
-      <div class="star">
-        <Icon name="ph:star-four" />
+    <InfoBox as="form" class="relative flex flex-col p-8 px-10" method="post">
+      <div class="absolute top-0 right-9.75 h-[3.2rem] border-r-2 border-accent"></div>
+      <div class="absolute top-0 right-6 h-[2.8rem] border-r border-accent"></div>
+      <div class="absolute top-12 right-4">
+        <Icon name="ph:star-four" class="w-12 h-12 text-accent" />
       </div>
-      <div class="star r">
-        <Icon name="ph:star-four" />
+      <div class="absolute top-11 right-4">
+        <Icon name="ph:star-four" class="w-4.5 h-4.5 text-accent" />
       </div>
       <!-- <div class="bg">
         <img src="bg2.svg" />
       </div> -->
-      <div class="heading active">Contact Me</div>
+      <div class="self-start text-[1.7rem] font-semibold text-text tracking-[0.1rem] mb-4">Contact Me</div>
       {
         success && (
-          <div class="status">
+          <div class="self-start font-medium">
             Your message has been sent successfully! I will get back to you
             soon.
           </div>
         )
       }
-      <div class="error">{errors.general.length > 0 && errors.general}</div>
-      <div class="input">
+      <div class="self-start text-error font-medium mb-4">{errors.general.length > 0 && errors.general}</div>
+      <div class="w-full flex items-stretch">
         <input type="text" name="name" placeholder="Name" />
       </div>
-      <div class="error">{errors.name.length > 0 && errors.name}</div>
-      <div class="input">
+      <div class="self-start text-error font-medium mb-4">{errors.name.length > 0 && errors.name}</div>
+      <div class="w-full flex items-stretch">
         <input type="email" name="email" placeholder="Email" />
       </div>
-      <div class="error">{errors.email.length > 0 && errors.email}</div>
-      <div class="input">
+      <div class="self-start text-error font-medium mb-4">{errors.email.length > 0 && errors.email}</div>
+      <div class="w-full flex items-stretch">
         <input type="text" name="subject" placeholder="Subject" />
       </div>
-      <div class="error">{errors.subject.length > 0 && errors.subject}</div>
-      <div class="input textarea">
+      <div class="self-start text-error font-medium mb-4">{errors.subject.length > 0 && errors.subject}</div>
+      <div class="w-full flex items-stretch h-full">
         <textarea name="message" placeholder="Message"></textarea>
       </div>
-      <div class="error textarea">
+      <div class="self-start text-error font-medium mb-0 mt-8">
         {errors.message.length > 0 && errors.message}
       </div>
-      <button class="btn" type="submit">Send</button>
-    </form>
+      <Button type="submit" class="mt-4 w-full border-none rounded-[10px] py-4 px-7.5">Send</Button>
+    </InfoBox>
   </main>
 </Layout>
-
-<style lang="scss">
-  main {
-    width: 100%;
-
-    display: grid;
-    grid-template-columns: 2fr 3fr;
-    gap: 2rem;
-
-    margin-top: -2rem;
-
-    @media screen and (max-width: 768px) {
-      grid-template-columns: 1fr;
-
-      padding: 0 1rem;
-    }
-
-    .infos {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-
-      .heading {
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: var(--text-color);
-
-        letter-spacing: 0.1rem;
-      }
-
-      .info {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-
-        > div {
-          display: flex;
-          flex-direction: column;
-          span {
-            font-size: 1.15rem;
-            font-weight: 500;
-          }
-        }
-      }
-    }
-
-    form {
-      position: relative;
-
-      display: flex;
-      flex-direction: column;
-
-      padding: 2rem 2.5rem;
-
-      .string {
-        position: absolute;
-        top: 0;
-        right: calc(1rem + 23px);
-
-        height: 3.2rem;
-
-        border-right: 2px solid var(--accent-color);
-      }
-
-      .string2 {
-        position: absolute;
-        top: 0;
-        right: calc(1rem + 8px);
-
-        height: 2.8rem;
-
-        border-right: 1px solid var(--accent-color);
-      }
-
-      .star {
-        position: absolute;
-        top: 3rem;
-        right: 1rem;
-
-        &.r {
-          top: 2.75rem;
-          right: 1rem;
-
-          svg {
-            width: 18px;
-            height: 18px;
-          }
-        }
-
-        svg {
-          width: 48px;
-          height: 48px;
-          color: var(--accent-color);
-        }
-      }
-
-      .bg {
-        position: absolute;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        z-index: -1;
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: center;
-
-          border-radius: 30px;
-
-          opacity: 0.3;
-        }
-      }
-
-      .heading {
-        align-self: self-start;
-
-        font-size: 1.7rem;
-        font-weight: 600;
-        color: var(--text-color);
-        letter-spacing: 0.1rem;
-
-        margin-bottom: 1rem;
-      }
-
-      .status {
-        align-self: self-start;
-        font-weight: 500;
-      }
-
-      .input {
-        width: 100%;
-        display: flex;
-        align-items: stretch;
-
-        &.textarea {
-          height: 100%;
-        }
-      }
-
-      .error {
-        align-self: self-start;
-        color: #ff3e3ec7;
-        font-weight: 500;
-        margin-bottom: 1rem;
-
-        &.textarea {
-          margin-top: 2rem;
-          margin-bottom: 0;
-        }
-      }
-
-      .cf-turnstile {
-        align-self: self-start;
-        width: 100%;
-        margin-top: 2rem;
-      }
-
-      .btn {
-        margin-top: 1rem;
-        width: 100%;
-        border: none;
-        border-radius: 10px;
-        padding: 16px 30px;
-      }
-    }
-
-    .social {
-      > .info-box {
-        padding: 1.5rem !important;
-        border-radius: 50%;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        transition: all 0.2s ease-in-out;
-
-        color: var(--text-color);
-
-        &::before,
-        &::after {
-          border-radius: 50%;
-        }
-
-        &:hover,
-        &:active {
-          color: var(--bg-color);
-          background: var(--text-color);
-        }
-
-        > svg {
-          width: 32px;
-          height: 32px;
-        }
-      }
-    }
-  }
-</style>

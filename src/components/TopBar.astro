@@ -1,30 +1,31 @@
 ---
 import Right from "./icons/Right.astro";
+
 const routes: {
-  [key: string]: string;
+	[key: string]: string;
 } = {
-  Home: "/",
-  About: "/about",
-  Work: "/work",
-  Contact: "/contact",
+	Home: "/",
+	About: "/about",
+	Work: "/work",
+	Contact: "/contact",
 };
 
 const path = Astro.url.pathname;
 ---
 
-<div class="topbar">
-  <img class="logo" src="/favicon.svg" alt="logo" />
-  <div class="menu">
+<div class="flex items-center justify-between py-4 mb-12 px-6 min-[480px]:px-0 min-[480px]:mb-20">
+  <img class="w-12 h-12" src="/favicon.svg" alt="logo" />
+  <div class="hidden items-center justify-between gap-10 min-[480px]:flex">
     {
       Object.keys(routes).map((route) => (
         <a
-          class={`link ${
+          class={`no-underline text-lead-text font-medium text-[16px] tracking-[0.75px] hover:text-text active:text-text ${
             (
               route === "Home"
                 ? path === routes[route]
                 : path.startsWith(routes[route])
             )
-              ? "active"
+              ? "text-text!"
               : ""
           }`}
           href={routes[route]}
@@ -36,72 +37,9 @@ const path = Astro.url.pathname;
   </div>
   {
     path !== "/" && (
-      <a href="/">
-        <Right class="icon" />
+      <a href="/" class="block min-[480px]:hidden">
+        <Right class="w-10 h-10 rotate-180 bg-text/10 p-2 rounded-full" />
       </a>
     )
   }
 </div>
-
-<style lang="scss">
-  .topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 1rem 0;
-    margin-bottom: 5rem;
-
-    @media screen and (max-width: 480px) {
-      padding: 1rem 1.5rem;
-      margin-bottom: 3rem;
-    }
-
-    img.logo {
-      width: 48px;
-      height: 48px;
-    }
-
-    .menu {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      gap: 2.5rem;
-
-      @media screen and (max-width: 480px) {
-        display: none;
-      }
-
-      .link {
-        text-decoration: none;
-        color: var(--lead-text-color);
-        font-weight: 500;
-        font-size: 16px;
-
-        letter-spacing: 0.75px;
-
-        &:hover,
-        &:active {
-          color: var(--primary-color);
-        }
-      }
-    }
-
-    > a {
-      display: none;
-      @media screen and (max-width: 480px) {
-        display: block;
-      }
-      .icon {
-        width: 24px;
-        height: 24px;
-        transform: rotate(180deg);
-
-        background-color: rgba(255, 255, 255, 0.1);
-        padding: 0.5rem;
-        border-radius: 50%;
-      }
-    }
-  }
-</style>

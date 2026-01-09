@@ -6,6 +6,10 @@
   --color-lead-text: #676767;
   --color-bg: #0f0f0f;
   --color-accent: #fbae3c;
+  --color-content-text: #ddd;
+  --color-error: #ff3e3ec7;
+  --color-button-bg: #323232;
+  --color-overlay: #0f0f0fcc;
 
   --font-poppins: "Poppins", sans-serif;
 }
@@ -86,7 +90,7 @@
 @layer components {
   /* Project details page styles for MDX content */
   .project-details {
-    @apply relative w-full flex flex-col text-[#ddd];
+    @apply relative w-full flex flex-col text-content-text;
   }
 
   .project-details h1,
